@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.Items;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
+using Ryuka.Sulfur.Rummage.Config;
 using Ryuka.Sulfur.Rummage.Diagnostics;
 using Ryuka.Sulfur.Rummage.Filter;
 using Ryuka.Sulfur.Rummage.Game;
@@ -37,6 +38,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
 
         private readonly InventoryFilter filter;
         private readonly DiagnosticsConfig diagnostics;
+        private readonly DisplayConfig display;
         private readonly SearchResultsPanel results = new SearchResultsPanel();
         private readonly List<CategoryButton> categoryButtons = new List<CategoryButton>();
         private readonly List<TextMeshProUGUI> texts = new List<TextMeshProUGUI>();
@@ -63,11 +65,19 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             public TextMeshProUGUI Label;
         }
 
-        public SearchBar(InventoryFilter filter, DiagnosticsConfig diagnostics)
+        public SearchBar(InventoryFilter filter, DiagnosticsConfig diagnostics, DisplayConfig display)
         {
             this.filter = filter;
             this.diagnostics = diagnostics;
+            this.display = display;
             filter.Changed += RefreshSelection;
+            display.ResultsPlacement.SettingChanged += OnResultsPlacementChanged;
+        }
+
+        /// <summary>A changed setting takes effect on the next frame the bar is placed.</summary>
+        private void OnResultsPlacementChanged(object sender, EventArgs e)
+        {
+            placedFor = null;
         }
 
         public bool IsFocused
@@ -177,6 +187,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         public void Dispose()
         {
             filter.Changed -= RefreshSelection;
+            display.ResultsPlacement.SettingChanged -= OnResultsPlacementChanged;
             results.Destroy();
 
             if (root != null)
@@ -294,7 +305,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             rootRect.SetAsLastSibling();
 
             Layout(width);
-            results.Place(new Vector2(topLeft.x, topLeft.y + MarginAboveGrid + height + Gap), width);
+            float barBottom = topLeft.y + MarginAboveGrid;
+            results.Place(topLeft.x, barBottom, barBottom + height, width, display.ResultsPlacement.Value);
 
             if (diagnostics.LogSearchFilter.Value)
             {

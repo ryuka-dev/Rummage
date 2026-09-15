@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.UI;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
+using Ryuka.Sulfur.Rummage.Config;
 using Ryuka.Sulfur.Rummage.Diagnostics;
 using Ryuka.Sulfur.Rummage.Game;
 using Ryuka.Sulfur.Rummage.InputGuard;
@@ -24,10 +25,10 @@ namespace Ryuka.Sulfur.Rummage.Filter
         private bool countsStale;
         private bool tickFailureReported;
 
-        public RummageController(DiagnosticsConfig diagnostics)
+        public RummageController(DiagnosticsConfig diagnostics, DisplayConfig display)
         {
             presenter = new InventoryFilterPresenter(filter, diagnostics);
-            searchBar = new SearchBar(filter, diagnostics);
+            searchBar = new SearchBar(filter, diagnostics, display);
             worldMarkers = new WorldMarkers(diagnostics);
             presenter.SummaryChanged += PublishCounts;
 

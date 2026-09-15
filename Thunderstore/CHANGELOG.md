@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5
+
+* The search results now sit under the search bar, over the top of the backpack, by default. Expanded, the item list grows with its content down to the bottom of the screen, never taller than the list itself.
+* New setting Display > Results Position: `BelowSearchBar` (default) or `AboveSearchBar` for the previous layout. It applies without restarting.
+* The counts line no longer blocks clicks on the backpack beneath it; only its expand button takes clicks.
+
 ## 0.0.4
 
 * While a search or category is active, storages that hold matches show a floating label in the world, such as `Wardrobe ×5`, visible through walls. When one storage stands in several places, only the nearest is labelled, updated as you move.

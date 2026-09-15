@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Écrit une fois par session dans le journal BepInEx les termes de localisation du jeu pouvant nommer les boutons et libellés de Rummage. Ne modifie pas le fonctionnement du mod."
+    },
+    {
+      "key": "section.Display",
+      "value": "Affichage"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Position des résultats"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Emplacement des résultats de recherche. BelowSearchBar : sous la barre de recherche, par-dessus le sac, s'agrandit avec la liste jusqu'au bas de l'écran. AboveSearchBar : au-dessus de la barre de recherche, dans un panneau plus bas qui défile."
     }
   ]
 }

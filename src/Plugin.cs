@@ -3,6 +3,7 @@ using System.IO;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using Ryuka.Sulfur.Rummage.Config;
 using Ryuka.Sulfur.Rummage.Diagnostics;
 using Ryuka.Sulfur.Rummage.Filter;
 using Ryuka.Sulfur.Rummage.Game;
@@ -16,7 +17,7 @@ namespace Ryuka.Sulfur.Rummage
     {
         public const string PluginGuid = "ryuka.sulfur.rummage";
         public const string PluginName = "Rummage";
-        public const string PluginVersion = "0.0.4";
+        public const string PluginVersion = "0.0.5";
 
         internal static ManualLogSource Log;
 
@@ -34,7 +35,8 @@ namespace Ryuka.Sulfur.Rummage
             EnchantmentCatalogProbe.Initialize(diagnostics);
             GameTermProbe.Initialize(diagnostics);
 
-            controller = new RummageController(diagnostics);
+            DisplayConfig display = new DisplayConfig(Config);
+            controller = new RummageController(diagnostics, display);
             InventoryStatePatch.StateSet += controller.OnInventoryStateSet;
             InventoryStatePatch.StateSet += GameTermProbe.OnInventoryStateSet;
 

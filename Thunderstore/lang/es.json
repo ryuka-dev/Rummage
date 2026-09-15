@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Una vez por sesión, escribe en el registro de BepInEx los términos de localización del juego que podrían nombrar los botones y etiquetas de Rummage. No cambia el funcionamiento del mod."
+    },
+    {
+      "key": "section.Display",
+      "value": "Visualización"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Posición de los resultados"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Dónde aparecen los resultados. BelowSearchBar: bajo la barra de búsqueda, sobre la mochila, crece con la lista hasta el borde inferior de la pantalla. AboveSearchBar: sobre la barra de búsqueda, en un panel más bajo con desplazamiento."
     }
   ]
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
+using Ryuka.Sulfur.Rummage.Config;
 using Ryuka.Sulfur.Rummage.Game;
 using Ryuka.Sulfur.Rummage.Localization;
 using TMPro;
@@ -9,11 +10,12 @@ using UnityEngine.UI;
 namespace Ryuka.Sulfur.Rummage.UserInterface
 {
     /// <summary>
-    /// Where the matches are, shown just above the search bar while a filter is active.
+    /// Where the matches are, shown next to the search bar while a filter is active.
     ///
     /// By default one line of counts per place, with a square button at its end. Expanded, a
-    /// scrollable panel above that line lists which items each place holds. The panel never grows
-    /// past the top of the screen.
+    /// scrollable panel lists which items each place holds. Below the search bar (over the backpack)
+    /// the panel grows with its list down to the bottom of the screen; above the search bar it is
+    /// capped shorter and never grows past the top of the screen. It is never taller than its list.
     /// </summary>
     internal sealed class SearchResultsPanel
     {
@@ -25,8 +27,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float DetailFontSize = 14f;
         private const float DetailPadding = 6f;
         private const float DetailMinimumHeight = 40f;
-        private const float DetailMaximumHeight = 320f;
-        private const float ScreenTopMargin = 8f;
+        private const float AboveDetailMaximumHeight = 320f;
+        private const float ScreenMargin = 8f;
         private const string Separator = "  ·  ";
 
         private static readonly Vector3[] Corners = new Vector3[4];
@@ -49,8 +51,11 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private bool shown;
         private bool fontReady = true;
         private bool placed;
-        private Vector2 bottomLeft;
+        private float left;
+        private float barBottom;
+        private float barTop;
         private float width;
+        private ResultsPosition position;
 
         public bool IsBuilt
         {
@@ -61,6 +66,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         {
             texts.Clear();
             placed = false;
+            fontReady = true;
 
             root = new GameObject("Rummage_SearchResults", typeof(RectTransform), typeof(LayoutElement));
             root.GetComponent<LayoutElement>().ignoreLayout = true;
@@ -77,11 +83,14 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             UpdateVisibility();
         }
 
-        /// <summary>Anchors the panel's bottom-left corner in the parent's local space.</summary>
-        public void Place(Vector2 position, float barWidth)
+        /// <summary>The search bar's left edge, bottom, top and width, in the parent's local space.</summary>
+        public void Place(float barLeft, float barBottomY, float barTopY, float barWidth, ResultsPosition resultsPosition)
         {
-            bottomLeft = position;
+            left = barLeft;
+            barBottom = barBottomY;
+            barTop = barTopY;
             width = barWidth;
+            position = resultsPosition;
             placed = true;
 
             if (root != null)
@@ -153,6 +162,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             summaryRow.SetParent(rootRect, false);
             Image background = row.GetComponent<Image>();
             background.color = UiTheme.Field;
+
+            // Clicks pass through the line to the backpack under it; only its button takes them.
+            background.raycastTarget = false;
 
             // Overflow, and a height measured from the text: TMP's Ellipsis mode blanks a line that
             // is taller than its rect, which CJK lines easily are.
@@ -240,36 +252,60 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 return;
             }
 
+            bool below = position == ResultsPosition.BelowSearchBar;
+
             float summaryTextWidth = Mathf.Max(40f, width - ToggleSize - 20f);
             float summaryHeight = Mathf.Clamp(PreferredHeight(summaryText, summaryTextWidth) + 8f, SummaryMinimumHeight, SummaryMaximumHeight);
 
-            UiParts.SetBottomLeft(summaryRow, 0f, 0f, width, summaryHeight);
-            UiParts.SetBottomLeft(toggleRect, width - ToggleSize - 4f, (summaryHeight - ToggleSize) * 0.5f, ToggleSize, ToggleSize);
-
             bool showDetail = expanded && counts != null && counts.Count > 0;
-            float total = summaryHeight;
-
             if (detailPanel.gameObject.activeSelf != showDetail)
             {
                 detailPanel.gameObject.SetActive(showDetail);
             }
 
+            float detailHeight = 0f;
             if (showDetail)
             {
                 float contentWidth = Mathf.Max(40f, width - DetailPadding * 2f);
                 float contentHeight = PreferredHeight(detailText, contentWidth);
                 detailContent.sizeDelta = new Vector2(0f, contentHeight);
 
-                float room = RoomAbove(bottomLeft.y + summaryHeight + Gap);
-                float maximum = Mathf.Max(DetailMinimumHeight, Mathf.Min(DetailMaximumHeight, room));
-                float detailHeight = Mathf.Clamp(contentHeight + DetailPadding * 2f, DetailMinimumHeight, maximum);
-
-                UiParts.SetBottomLeft(detailPanel, 0f, summaryHeight + Gap, width, detailHeight);
-                total += Gap + detailHeight;
+                // Never taller than the list itself; beyond that, bounded by the screen edge it grows
+                // towards, and above the bar also by a fixed cap.
+                float room = below
+                    ? RoomBelow(barBottom - Gap - summaryHeight - Gap)
+                    : Mathf.Min(AboveDetailMaximumHeight, RoomAbove(barTop + Gap + summaryHeight + Gap));
+                float maximum = Mathf.Max(DetailMinimumHeight, room);
+                detailHeight = Mathf.Clamp(contentHeight + DetailPadding * 2f, DetailMinimumHeight, maximum);
             }
 
+            float total = summaryHeight + (showDetail ? Gap + detailHeight : 0f);
+
+            if (below)
+            {
+                // Hangs down from the bar: the counts line first, the list under it.
+                UiParts.SetBottomLeft(summaryRow, 0f, showDetail ? detailHeight + Gap : 0f, width, summaryHeight);
+                if (showDetail)
+                {
+                    UiParts.SetBottomLeft(detailPanel, 0f, 0f, width, detailHeight);
+                }
+
+                rootRect.localPosition = new Vector3(left, barBottom - Gap - total, 0f);
+            }
+            else
+            {
+                // Rises from the bar: the counts line first, the list above it.
+                UiParts.SetBottomLeft(summaryRow, 0f, 0f, width, summaryHeight);
+                if (showDetail)
+                {
+                    UiParts.SetBottomLeft(detailPanel, 0f, summaryHeight + Gap, width, detailHeight);
+                }
+
+                rootRect.localPosition = new Vector3(left, barTop + Gap, 0f);
+            }
+
+            UiParts.SetBottomLeft(toggleRect, width - ToggleSize - 4f, (summaryHeight - ToggleSize) * 0.5f, ToggleSize, ToggleSize);
             rootRect.sizeDelta = new Vector2(width, total);
-            rootRect.localPosition = new Vector3(bottomLeft.x, bottomLeft.y, 0f);
         }
 
         private void UpdateVisibility()
@@ -341,25 +377,35 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             return string.IsNullOrEmpty(text.text) ? 0f : text.GetPreferredValues(text.text, width, 0f).y;
         }
 
-        /// <summary>How much height is left between a point in the parent and the top of the screen.</summary>
+        /// <summary>Height left between a point in the parent and the top of the screen.</summary>
         private float RoomAbove(float localY)
         {
+            float edge;
+            return TryScreenEdge(1, out edge) ? edge - localY - ScreenMargin : AboveDetailMaximumHeight;
+        }
+
+        /// <summary>Height left between a point in the parent and the bottom of the screen.</summary>
+        private float RoomBelow(float localY)
+        {
+            float edge;
+            return TryScreenEdge(0, out edge) ? localY - edge - ScreenMargin : AboveDetailMaximumHeight;
+        }
+
+        /// <summary>The y of the root canvas's bottom-left (corner 0) or top-left (corner 1) in the parent's space.</summary>
+        private bool TryScreenEdge(int corner, out float y)
+        {
+            y = 0f;
             Canvas canvas = rootRect.GetComponentInParent<Canvas>();
             RectTransform parent = rootRect.parent as RectTransform;
-            if (canvas == null || parent == null)
+            RectTransform canvasRect = canvas != null ? canvas.rootCanvas.transform as RectTransform : null;
+            if (canvasRect == null || parent == null)
             {
-                return DetailMaximumHeight;
-            }
-
-            RectTransform canvasRect = canvas.rootCanvas.transform as RectTransform;
-            if (canvasRect == null)
-            {
-                return DetailMaximumHeight;
+                return false;
             }
 
             canvasRect.GetWorldCorners(Corners);
-            float top = parent.InverseTransformPoint(Corners[1]).y;
-            return top - localY - ScreenTopMargin;
+            y = parent.InverseTransformPoint(Corners[corner]).y;
+            return true;
         }
     }
 }

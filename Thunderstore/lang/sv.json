@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Skriver en gång per session spelets lokaliseringstermer som kan namnge Rummages knappar och etiketter till BepInEx-loggen. Påverkar inte hur moddet fungerar."
+    },
+    {
+      "key": "section.Display",
+      "value": "Visning"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Resultatens placering"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Var sökresultaten visas. BelowSearchBar: under sökfältet, över ryggsäcken, växer med listan ner till skärmens nederkant. AboveSearchBar: ovanför sökfältet, i en lägre rullbar panel."
     }
   ]
 }

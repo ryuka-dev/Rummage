@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Raz na sesję zapisuje do logu BepInEx terminy lokalizacji gry, które mogą nazwać przyciski i etykiety Rummage. Nie zmienia działania moda."
+    },
+    {
+      "key": "section.Display",
+      "value": "Wyświetlanie"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Położenie wyników"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Gdzie pojawiają się wyniki. BelowSearchBar: pod paskiem wyszukiwania, nad plecakiem, rośnie wraz z listą do dołu ekranu. AboveSearchBar: nad paskiem wyszukiwania, w niższym przewijanym panelu."
     }
   ]
 }

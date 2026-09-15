@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Once per session, writes the game's localization terms that could name Rummage's buttons and labels to the BepInEx log. Does not change how the mod works."
+    },
+    {
+      "key": "section.Display",
+      "value": "Display"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Results Position"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Where the search results sit. BelowSearchBar: over the top of the backpack, growing with the list up to the bottom of the screen. AboveSearchBar: above the search bar, in a shorter scrolling panel."
     }
   ]
 }

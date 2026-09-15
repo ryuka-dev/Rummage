@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Oturum başına bir kez, Rummage'ın düğme ve etiketlerini adlandırabilecek oyun yerelleştirme terimlerini BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
+    },
+    {
+      "key": "section.Display",
+      "value": "Görünüm"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Sonuçların konumu"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Arama sonuçlarının konumu. BelowSearchBar: arama çubuğunun altında, sırt çantasının üzerinde, listeyle birlikte ekranın altına kadar büyür. AboveSearchBar: arama çubuğunun üstünde, daha kısa kaydırılabilir bir panelde."
     }
   ]
 }

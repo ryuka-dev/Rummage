@@ -19,9 +19,11 @@ In development (phase 1).
 - While the search box has focus, the inventory's keyboard shortcuts do not fire; Escape leaves the
   box instead of closing the inventory.
 - The filter stays set until cleared, for the rest of the session. It is not saved.
-- While a filter is active, a line above the search bar counts the matches per place, for example
+- While a filter is active, a line next to the search bar counts the matches per place, for example
   `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. The square button at its end expands a scrollable
-  list of the matching items in each place. Stashes whose grid the game has set up (all of them
+  list of the matching items in each place. By default it hangs under the search bar over the top
+  of the backpack and grows with the list down to the bottom of the screen; with
+  `ResultsPosition = AboveSearchBar` it sits above the search bar, capped shorter. Stashes whose grid the game has set up (all of them
   in the church) are counted live; the rest from the save's stash table, which the game refreshes
   when a stash closes. Item frames and wall mounts count as places too. Storage names use the
   game's own name for the storage's unlock item, where probe rounds showed the storage carrying
@@ -62,7 +64,13 @@ dotnet run --project Tests/StashSaveKeyTests
 
 ## Configuration
 
-Only log switches, under `[Debug]`. They never change what the mod does.
+`[Display]`
+
+| Key | Default | Effect |
+| --- | --- | --- |
+| `ResultsPosition` | `BelowSearchBar` | `BelowSearchBar`: results under the search bar, over the backpack, growing with the list. `AboveSearchBar`: above the search bar, shorter. Applies live. |
+
+`[Debug]` log switches. They never change what the mod does.
 
 | Key | Default | Effect |
 | --- | --- | --- |

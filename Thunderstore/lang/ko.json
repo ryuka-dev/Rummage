@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "세션마다 한 번, Rummage의 버튼과 레이블 이름으로 쓸 수 있는 게임 현지화 용어를 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
+    },
+    {
+      "key": "section.Display",
+      "value": "표시"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "검색 결과 위치"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "검색 결과 위치. BelowSearchBar: 검색창 아래, 배낭 위에 겹쳐 표시되며 목록에 맞춰 화면 아래까지 늘어납니다. AboveSearchBar: 검색창 위에 더 낮은 스크롤 패널로 표시됩니다."
     }
   ]
 }

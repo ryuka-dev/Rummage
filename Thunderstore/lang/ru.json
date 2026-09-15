@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Один раз за сеанс записывает в лог BepInEx игровые термины локализации, которые могут подойти для кнопок и подписей Rummage. Не влияет на работу мода."
+    },
+    {
+      "key": "section.Display",
+      "value": "Отображение"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Положение результатов поиска"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Где показываются результаты поиска. BelowSearchBar: под строкой поиска поверх рюкзака, растёт вместе со списком до низа экрана. AboveSearchBar: над строкой поиска, в более низкой прокручиваемой панели."
     }
   ]
 }

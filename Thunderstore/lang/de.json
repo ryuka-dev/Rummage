@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "Schreibt einmal pro Sitzung die Lokalisierungsbegriffe des Spiels, die Rummages Schaltflächen und Beschriftungen benennen könnten, in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
+    },
+    {
+      "key": "section.Display",
+      "value": "Anzeige"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "Position der Suchergebnisse"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "Wo die Suchergebnisse erscheinen. BelowSearchBar: unter der Suchleiste über dem Rucksack, wächst mit der Liste bis zum unteren Bildschirmrand. AboveSearchBar: über der Suchleiste in einem niedrigeren, scrollbaren Feld."
     }
   ]
 }

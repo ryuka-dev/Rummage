@@ -139,6 +139,18 @@
     {
       "key": "entry.Debug.LogGameTerms.description",
       "value": "يكتب مرة واحدة في كل جلسة مصطلحات الترجمة في اللعبة التي قد تسمّي أزرار Rummage وتسمياتها في سجل BepInEx. لا يغيّر طريقة عمل التعديل."
+    },
+    {
+      "key": "section.Display",
+      "value": "العرض"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.name",
+      "value": "موضع نتائج البحث"
+    },
+    {
+      "key": "entry.Display.ResultsPosition.description",
+      "value": "مكان ظهور نتائج البحث. BelowSearchBar: أسفل شريط البحث فوق الحقيبة، ويتسع مع القائمة حتى أسفل الشاشة. AboveSearchBar: أعلى شريط البحث في لوحة أقصر قابلة للتمرير."
     }
   ]
 }
