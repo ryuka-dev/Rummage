@@ -118,14 +118,18 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             if (fontStale)
             {
                 TMP_FontAsset current = GameFonts.Current();
-                if (current != null)
+                if (current == null)
                 {
-                    font = current;
-                    fontStale = false;
-                    foreach (Marker marker in markers.Values)
-                    {
-                        ApplyFont(marker);
-                    }
+                    // Measuring text with the previous language's font can fail once it is released.
+                    HideAll();
+                    return;
+                }
+
+                font = current;
+                fontStale = false;
+                foreach (Marker marker in markers.Values)
+                {
+                    ApplyFont(marker);
                 }
             }
 

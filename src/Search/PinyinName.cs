@@ -125,6 +125,11 @@ namespace Ryuka.Sulfur.Rummage.Search
             {
                 string reading = characterReadings[r];
 
+                // Only a character's most common reading may be abbreviated or left half typed; a
+                // rarer reading counts only when typed in full. Otherwise "hp" finds 汉堡 through the
+                // rare "pu" reading of 堡.
+                bool primary = r == 0;
+
                 int shared = 0;
                 while (shared < reading.Length
                     && queryIndex + shared < query.Length
@@ -141,7 +146,12 @@ namespace Ryuka.Sulfur.Rummage.Search
                 // The query ran out inside this syllable: everything typed so far lines up.
                 if (queryIndex + shared >= query.Length)
                 {
-                    return true;
+                    if (primary || shared == reading.Length)
+                    {
+                        return true;
+                    }
+
+                    continue;
                 }
 
                 // Only a whole syllable or a way it is abbreviated may carry on to the next
@@ -149,6 +159,11 @@ namespace Ryuka.Sulfur.Rummage.Search
                 if (shared == reading.Length && MatchFrom(index + 1, query, queryIndex + shared))
                 {
                     return true;
+                }
+
+                if (!primary)
+                {
+                    continue;
                 }
 
                 if (MatchFrom(index + 1, query, queryIndex + 1))

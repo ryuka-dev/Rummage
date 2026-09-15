@@ -103,10 +103,15 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
 
             if (fontStale)
             {
-                fontStale = false;
+                // Until the new language's font is applied, nothing may measure text: the previous
+                // font's material may already be released.
                 TMP_FontAsset font = SampleFont(ui);
-                ApplyFont(font);
-                LogFont(font);
+                if (font != null)
+                {
+                    fontStale = false;
+                    ApplyFont(font);
+                    LogFont(font);
+                }
             }
 
             Place(gridRect);
@@ -152,6 +157,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         public void RefreshTexts()
         {
             fontStale = true;
+            results.SetFontStale();
             results.RefreshTexts();
 
             if (root == null)
@@ -239,6 +245,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 placedFor = null;
                 RefreshTexts();
                 fontStale = false;
+                results.ApplyFont(font);
                 RefreshSelection();
                 return true;
             }
@@ -349,9 +356,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 case ItemCategory.Weapons:
                     return RummageText.Get("category.weapons", "Weapons");
                 case ItemCategory.Attachments:
-                    return RummageText.Get("category.attachments", "Attachments");
+                    return GameTerms.Get(GameTerms.Attachments) ?? RummageText.Get("category.attachments", "Attachments");
                 case ItemCategory.Consumables:
-                    return RummageText.Get("category.consumables", "Consumables");
+                    return GameTerms.Get(GameTerms.Consumable) ?? RummageText.Get("category.consumables", "Consumables");
                 default:
                     return RummageText.Get("category.all", "All");
             }

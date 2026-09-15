@@ -3,6 +3,10 @@
 ## 0.0.4
 
 * While a search or category is active, storages that hold matches show a floating label in the world, such as `Wardrobe ×5`, visible through walls. When one storage stands in several places, only the nearest is labelled, updated as you move.
+* Search now also matches what an item's description says it does: healing, buffs, statuses it adds or removes, repair, the stats it gives when equipped, and its own description. Searching "health" finds food.
+* Pinyin search no longer matches a character's rare readings by initial, so "hp" no longer finds 汉堡.
+* The Consumable and Attachments buttons use the game's own translations.
+* Fixed an error when changing the game language with a search active.
 
 ## 0.0.3
 

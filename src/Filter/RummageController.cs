@@ -68,11 +68,12 @@ namespace Ryuka.Sulfur.Rummage.Filter
 
         public void OnLanguageChanged()
         {
+            // State first, so a failure in the UI refresh cannot leave stale names behind.
             ItemSearchCatalog.Invalidate();
-            searchBar.RefreshTexts();
             worldMarkers.OnLanguageChanged();
             presenter.MarkDirty();
             countsStale = true;
+            searchBar.RefreshTexts();
         }
 
         public void Tick()

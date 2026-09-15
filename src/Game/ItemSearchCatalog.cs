@@ -76,6 +76,7 @@ namespace Ryuka.Sulfur.Rummage.Game
                 }
 
                 AddModifierTexts(item.modifiersOnAttachToItem, false, sources);
+                AddDescriptionTexts(item, sources);
 
                 return new Entry(Classify(item, enchantment), SearchableText.Create(sources));
             }
@@ -130,6 +131,125 @@ namespace Ryuka.Sulfur.Rummage.Game
                 }
             }
         }
+
+        /// <summary>
+        /// The rest of what the item description shows, built from the same terms: the item's own
+        /// description, repair, healing and other buffs, statuses added or removed on consuming,
+        /// and the stats it gives when equipped. Numbers are left out; only the words are searched.
+        /// </summary>
+        private static void AddDescriptionTexts(ItemDefinition item, List<string> sources)
+        {
+            if (item.hasCustomDescription)
+            {
+                sources.Add(Translate("Items/" + item.name + "_description", null));
+            }
+
+            if (item.valueChangeOnItemConsume != null)
+            {
+                foreach (ItemConsumeContainer change in item.valueChangeOnItemConsume)
+                {
+                    if (change != null && change.attribute == ItemAttributes.Durability)
+                    {
+                        sources.Add(Template("ItemDescriptions/Instruction_Repair"));
+                        sources.Add(Template("ItemDescriptions/DynamicString_RepairValue"));
+                    }
+                }
+            }
+
+            if (item.buffsOnConsume != null)
+            {
+                foreach (BuffDefinition buff in item.buffsOnConsume)
+                {
+                    if (buff == null || buff.attributeId == EntityAttributes.None)
+                    {
+                        continue;
+                    }
+
+                    if (buff.attributeId == EntityAttributes.Stat_HealthRegen)
+                    {
+                        sources.Add(Template("ItemDescriptions/DynamicString_HealthConsumable"));
+                    }
+                    else if (buff.attributeId == EntityAttributes.Stat_MovementSpeed)
+                    {
+                        // The game writes this line in English in every language.
+                        sources.Add("extra movement speed");
+                    }
+                    else
+                    {
+                        sources.Add(Fill("ItemDescriptions/DynamicString_AttributeBonusBuff", "ATTRIBUTE_X", EntityName(buff.attributeId)));
+                    }
+                }
+            }
+
+            if (item.addStatusOnConsume != null)
+            {
+                foreach (ApplyStatusContainer status in item.addStatusOnConsume)
+                {
+                    if (status != null && status.status != EntityAttributes.None)
+                    {
+                        sources.Add(Fill("ItemDescriptions/DynamicString_StatusAdd", "STATUS_X", EntityName(status.status)));
+                    }
+                }
+            }
+
+            if (item.removeStatusOnConsume != null)
+            {
+                foreach (EntityAttributes status in item.removeStatusOnConsume)
+                {
+                    if (status != EntityAttributes.None && status != EntityAttributes.End)
+                    {
+                        sources.Add(Fill("ItemDescriptions/DynamicString_RemovesStatus", "STATUS_X", EntityName(status)));
+                    }
+                }
+            }
+
+            if (item.modifiersOnEquipNew != null)
+            {
+                foreach (ModifierContainer modifier in item.modifiersOnEquipNew)
+                {
+                    if (modifier == null || modifier.attribute == EntityAttributes.None)
+                    {
+                        continue;
+                    }
+
+                    EntityAttribute attribute = modifier.attribute.GetAsset();
+                    if (attribute != null && !attribute.hideFromItemDescriptions)
+                    {
+                        sources.Add(Translate("EntityAttributes/" + modifier.attribute + "_itemDescription", attribute.itemDescriptionName));
+                    }
+                }
+            }
+        }
+
+        private static string EntityName(EntityAttributes attribute)
+        {
+            return Translate("EntityAttributes/" + attribute + "_itemDescription", attribute.ToString());
+        }
+
+        private static string Fill(string term, string token, string value)
+        {
+            string template = Translate(term, null);
+            return template == null ? null : StripPlaceholders(template.Replace(token, value ?? string.Empty));
+        }
+
+        private static string Template(string term)
+        {
+            string template = Translate(term, null);
+            return template == null ? null : StripPlaceholders(template);
+        }
+
+        /// <summary>The description templates carry VALUE_X-style placeholders the game fills with numbers.</summary>
+        private static string StripPlaceholders(string text)
+        {
+            foreach (string placeholder in Placeholders)
+            {
+                text = text.Replace(placeholder, string.Empty);
+            }
+
+            return text;
+        }
+
+        private static readonly string[] Placeholders = { "VALUE_X", "DURATION_X", "AMOUNT_X", "STATUS_X", "ATTRIBUTE_X" };
 
         /// <summary>
         /// Oils and scrolls are both enchantment items. In build 25257948 every scroll's

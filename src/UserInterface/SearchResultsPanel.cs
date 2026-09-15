@@ -47,6 +47,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private List<LocationCount> counts;
         private bool expanded;
         private bool shown;
+        private bool fontReady = true;
         private bool placed;
         private Vector2 bottomLeft;
         private float width;
@@ -109,21 +110,29 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             Render();
         }
 
+        /// <summary>
+        /// The language changed: the texts may still carry a font whose material is released, so
+        /// nothing is measured until <see cref="ApplyFont"/> brings the new one.
+        /// </summary>
+        public void SetFontStale()
+        {
+            fontReady = false;
+        }
+
         public void ApplyFont(TMP_FontAsset font)
         {
-            if (font == null)
+            if (font != null)
             {
-                return;
-            }
-
-            foreach (TextMeshProUGUI text in texts)
-            {
-                if (text != null)
+                foreach (TextMeshProUGUI text in texts)
                 {
-                    text.font = font;
+                    if (text != null)
+                    {
+                        text.font = font;
+                    }
                 }
             }
 
+            fontReady = true;
             Layout();
         }
 
@@ -226,7 +235,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
 
         private void Layout()
         {
-            if (root == null || !placed)
+            if (root == null || !placed || !fontReady)
             {
                 return;
             }

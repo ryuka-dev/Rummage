@@ -57,6 +57,11 @@ namespace Ryuka.Sulfur.Rummage.Tests
             Hit(scroll, "juanzhou", "jz", "aftershock", "卷轴");
             Miss(scroll, "moyou");
 
+            // A rarer reading (堡 "pu") matches only when typed in full, never as an initial.
+            SearchableText burger = SearchableText.Create(new[] { "汉堡" });
+            Hit(burger, "hanbao", "hb", "hanb", "han", "bao", "hbao");
+            Miss(burger, "hp", "hanp");
+
             Miss(SearchableText.Create(null), "a");
             Check(SearchQuery.Parse("").Matches(null), "empty query matches an item with no texts");
         }
