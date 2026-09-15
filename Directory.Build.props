@@ -1,0 +1,18 @@
+<Project>
+
+  <PropertyGroup>
+    <!--
+      Release staging area. It is inside the repository, so unlike the game and BepInEx paths it
+      belongs here rather than in LocalPaths.props.
+    -->
+    <ThunderstoreDir Condition="'$(ThunderstoreDir)' == ''">$(MSBuildThisFileDirectory)Thunderstore</ThunderstoreDir>
+  </PropertyGroup>
+
+  <!--
+    Machine-specific paths (game install, BepInEx core, deploy profile). Gitignored.
+    Copy LocalPaths.props.example to LocalPaths.props and fill in your own.
+  -->
+  <Import Project="$(MSBuildThisFileDirectory)LocalPaths.props"
+          Condition="Exists('$(MSBuildThisFileDirectory)LocalPaths.props')" />
+
+</Project>

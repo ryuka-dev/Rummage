@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Exercises the game-independent stash key parsing on its own. The file under test only uses the
+    base class library, so it compiles here without the game or BepInEx.
+
+    Run from the repository root: dotnet run -\-project Tests/StashSaveKeyTests
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Ryuka.Sulfur.Rummage.Tests</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\src\Stashes\StashSaveKey.cs" Link="StashSaveKey.cs" />
+  </ItemGroup>
+
+</Project>

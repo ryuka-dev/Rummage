@@ -1,0 +1,14 @@
+# Build output
+bin/
+obj/
+.vs/
+*.user
+
+# Machine-specific paths (copy LocalPaths.props.example)
+LocalPaths.props
+
+# Build products and packages are never committed
+*.dll
+*.pdb
+*.zip
+*.psd

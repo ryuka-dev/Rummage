@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "이름, 오일, 효과로 배낭과 보관함을 검색하고 필터링하며, 아이템이 어느 보관함에 있는지 확인합니다."
+    },
+    {
+      "key": "section.Debug",
+      "value": "디버그"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "보관함 진단 로그 기록"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "보관함 식별자, 저장 키, 설정 시점, 아이템 변경 횟수를 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "인챈트 아이템 목록 로그 기록"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "게임에 정의된 모든 오일과 기타 인챈트 아이템을 세션마다 한 번 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
+    }
+  ]
+}

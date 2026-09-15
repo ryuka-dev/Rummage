@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "ابحث في حقيبتك وخزائنك وصفِّها حسب الاسم أو الزيت أو التأثير — واعرف أي خزانة تحتوي على الغرض."
+    },
+    {
+      "key": "section.Debug",
+      "value": "تصحيح"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "تسجيل تشخيص الخزائن"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "يكتب معرّفات الخزائن ومفاتيح الحفظ وتوقيت الإعداد وعدد تغييرات الأغراض في سجل BepInEx. لا يغيّر طريقة عمل التعديل."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "تسجيل فهرس التعاويذ"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "يكتب جميع الزيوت وأغراض التعاويذ الأخرى التي تعرّفها اللعبة في سجل BepInEx مرة واحدة في كل جلسة. لا يغيّر طريقة عمل التعديل."
+    }
+  ]
+}

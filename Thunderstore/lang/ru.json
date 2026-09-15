@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Поиск и фильтрация рюкзака и хранилищ по названию, маслу или эффекту — и в каком хранилище лежит предмет."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Отладка"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Логировать диагностику хранилищ"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Записывает в лог BepInEx идентификаторы хранилищ, ключи сохранения, момент инициализации и число изменений предметов. Не влияет на работу мода."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Логировать каталог зачарований"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Один раз за сеанс записывает в лог BepInEx все масла и другие предметы зачарования, определённые в игре. Не влияет на работу мода."
+    }
+  ]
+}

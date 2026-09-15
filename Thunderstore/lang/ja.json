@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "名前・オイル・効果でバックパックと収納箱を検索・絞り込みし、アイテムがどの収納箱にあるかを確認できます。"
+    },
+    {
+      "key": "section.Debug",
+      "value": "デバッグ"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "収納箱の調査をログ出力"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "収納箱の識別子、セーブキー、セットアップのタイミング、アイテム変更回数をBepInExログへ出力します。MODの動作には影響しません。"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "エンチャントアイテム一覧をログ出力"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "ゲームで定義されたすべてのオイルとその他のエンチャントアイテムを、セッションごとに1回BepInExログへ出力します。MODの動作には影響しません。"
+    }
+  ]
+}

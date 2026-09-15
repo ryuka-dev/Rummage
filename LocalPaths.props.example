@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <!-- SULFUR managed assemblies (game DLLs, Unity, TextMeshPro). -->
+    <SulfurManagedDir>C:\Path\To\SULFUR\Sulfur_Data\Managed</SulfurManagedDir>
+    <!-- BepInEx core directory of the profile you compile against (BepInEx.dll, 0Harmony.dll). -->
+    <BepInExCoreDir>C:\Path\To\Profile\BepInEx\core</BepInExCoreDir>
+    <!-- Only used when building with -p:DeployToSulfurProfile=true. -->
+    <SulfurBepInExPluginsDir>C:\Path\To\Profile\BepInEx\plugins</SulfurBepInExPluginsDir>
+  </PropertyGroup>
+</Project>

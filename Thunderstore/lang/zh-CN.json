@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "按名称、油或效果搜索和筛选背包与箱子，并查看物品存放在哪个箱子里。"
+    },
+    {
+      "key": "section.Debug",
+      "value": "调试"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "记录箱子探测"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "将箱子标识符、存档键、初始化时机和物品变动次数写入 BepInEx 日志。不影响 mod 的功能。"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "记录附魔物品目录"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "每次游戏会话将游戏定义的所有油和其他附魔物品写入 BepInEx 日志一次。不影响 mod 的功能。"
+    }
+  ]
+}

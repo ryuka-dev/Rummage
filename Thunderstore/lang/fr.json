@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Recherchez et filtrez votre sac à dos et vos coffres par nom, huile ou effet — et voyez quel coffre contient un objet."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Débogage"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Journaliser le diagnostic des coffres"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Écrit les identifiants des coffres, les clés de sauvegarde, le moment d'initialisation et le nombre de changements d'objets dans le journal BepInEx. Ne modifie pas le fonctionnement du mod."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Journaliser le catalogue des enchantements"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Écrit une fois par session toutes les huiles et autres objets d'enchantement définis par le jeu dans le journal BepInEx. Ne modifie pas le fonctionnement du mod."
+    }
+  ]
+}

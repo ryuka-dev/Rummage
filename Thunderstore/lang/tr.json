@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Sırt çantanı ve sandıklarını ada, yağa veya etkiye göre ara ve filtrele — bir eşyanın hangi sandıkta olduğunu gör."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Hata ayıklama"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Sandık tanılamasını günlüğe yaz"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Sandık kimliklerini, kayıt anahtarlarını, kurulum zamanlamasını ve eşya değişikliği sayılarını BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Büyü kataloğunu günlüğe yaz"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Oyunun tanımladığı tüm yağları ve diğer büyü eşyalarını oturum başına bir kez BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Przeszukuj i filtruj plecak oraz skrytki według nazwy, oleju lub efektu — i sprawdzaj, w której skrytce leży przedmiot."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Debugowanie"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Loguj diagnostykę skrytek"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Zapisuje do logu BepInEx identyfikatory skrytek, klucze zapisu, moment inicjalizacji i liczbę zmian przedmiotów. Nie zmienia działania moda."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Loguj katalog zaklęć"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Raz na sesję zapisuje do logu BepInEx wszystkie oleje i inne przedmioty zaklinające zdefiniowane w grze. Nie zmienia działania moda."
+    }
+  ]
+}

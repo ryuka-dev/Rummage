@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Search and filter your backpack and stashes by name, oil or effect — and see which stash holds an item."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Debug"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Log Stash Probe"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Writes stash identifiers, save keys, setup timing and item change counts to the BepInEx log. Does not change how the mod works."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Log Enchantment Catalog"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Writes every oil and other enchantment item the game defines to the BepInEx log once per session. Does not change how the mod works."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Pesquise e filtre sua mochila e seus baús por nome, óleo ou efeito — e veja em qual baú está cada item."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Depuração"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Registrar diagnóstico dos baús"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Escreve no log do BepInEx os identificadores dos baús, as chaves de salvamento, o momento de inicialização e a contagem de mudanças de itens. Não altera o funcionamento do mod."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Registrar catálogo de encantamentos"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Escreve uma vez por sessão no log do BepInEx todos os óleos e demais itens de encantamento definidos pelo jogo. Não altera o funcionamento do mod."
+    }
+  ]
+}

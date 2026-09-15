@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Durchsuche und filtere Rucksack und Truhen nach Name, Öl oder Effekt – und sieh, in welcher Truhe ein Gegenstand liegt."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Debug"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Truhen-Diagnose protokollieren"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Schreibt Truhen-Kennungen, Speicherschlüssel, Einrichtungszeitpunkt und Anzahl der Gegenstandsänderungen in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Verzauberungskatalog protokollieren"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Schreibt einmal pro Sitzung alle Öle und anderen Verzauberungsgegenstände des Spiels in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
+    }
+  ]
+}

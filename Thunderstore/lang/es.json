@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Busca y filtra tu mochila y tus alijos por nombre, aceite o efecto, y descubre en qué alijo está cada objeto."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Depuración"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Registrar diagnóstico de alijos"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Escribe en el registro de BepInEx los identificadores de los alijos, las claves de guardado, el momento de inicialización y el número de cambios de objetos. No cambia el funcionamiento del mod."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Registrar catálogo de encantamientos"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Escribe una vez por sesión en el registro de BepInEx todos los aceites y demás objetos de encantamiento que define el juego. No cambia el funcionamiento del mod."
+    }
+  ]
+}

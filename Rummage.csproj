@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>Rummage</AssemblyName>
+    <RootNamespace>Ryuka.Sulfur.Rummage</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Version>0.0.1</Version>
+    <Product>Rummage</Product>
+    <Authors>Ryuka</Authors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <Deterministic>true</Deterministic>
+    <DebugType>portable</DebugType>
+    <!-- An unresolved game reference is a broken build, not a warning. -->
+    <MSBuildWarningsAsErrors>$(MSBuildWarningsAsErrors);MSB3245</MSBuildWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The test harness is a separate project that links the game-independent sources. -->
+    <Compile Remove="Tests/**" />
+    <None Remove="Tests/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="PerfectRandom.Sulfur.Core">
+      <HintPath>$(SulfurManagedDir)\PerfectRandom.Sulfur.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(SulfurManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SulfurManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CheckLocalPaths" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(SulfurManagedDir)' == ''"
+           Text="SulfurManagedDir is not set. Copy LocalPaths.props.example to LocalPaths.props and fill in your game path." />
+    <Error Condition="'$(BepInExCoreDir)' == ''"
+           Text="BepInExCoreDir is not set. Copy LocalPaths.props.example to LocalPaths.props and fill in your BepInEx core path." />
+  </Target>
+
+  <!--
+    Off by default. Build with -p:DeployToSulfurProfile=true to copy the plugin and its language
+    files into a profile. Deploy into a profile that does not also carry a Thunderstore install of
+    this mod: two copies of one plugin GUID make BepInEx skip one of them.
+  -->
+  <Target Name="DeployToSulfurProfile" AfterTargets="Build" Condition="'$(DeployToSulfurProfile)' == 'true'">
+    <Error Condition="'$(SulfurBepInExPluginsDir)' == ''" Text="SulfurBepInExPluginsDir is not set in LocalPaths.props." />
+    <ItemGroup>
+      <LangFiles Include="$(ThunderstoreDir)\lang\*.json" />
+    </ItemGroup>
+    <MakeDir Directories="$(SulfurBepInExPluginsDir)\Rummage" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SulfurBepInExPluginsDir)\Rummage" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ThunderstoreDir)" />
+    <Copy SourceFiles="@(LangFiles)" DestinationFolder="$(SulfurBepInExPluginsDir)\Rummage\lang" Condition="'@(LangFiles)' != ''" />
+  </Target>
+
+</Project>

@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Cerca e filtra zaino e depositi per nome, olio o effetto, e scopri in quale deposito si trova un oggetto."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Debug"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Registra diagnostica dei depositi"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Scrive nel log di BepInEx gli identificatori dei depositi, le chiavi di salvataggio, il momento di inizializzazione e il numero di modifiche agli oggetti. Non cambia il funzionamento della mod."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Registra catalogo degli incantesimi"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Scrive una volta per sessione nel log di BepInEx tutti gli oli e gli altri oggetti di incantamento definiti dal gioco. Non cambia il funzionamento della mod."
+    }
+  ]
+}

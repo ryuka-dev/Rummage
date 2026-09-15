@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "plugin.name",
+      "value": "Rummage"
+    },
+    {
+      "key": "plugin.description",
+      "value": "Sök och filtrera ryggsäcken och förråden efter namn, olja eller effekt – och se vilket förråd som har ett föremål."
+    },
+    {
+      "key": "section.Debug",
+      "value": "Felsökning"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.name",
+      "value": "Logga förrådsdiagnostik"
+    },
+    {
+      "key": "entry.Debug.LogStashProbe.description",
+      "value": "Skriver förrådens identifierare, sparnycklar, tidpunkt för initiering och antal föremålsändringar till BepInEx-loggen. Påverkar inte hur moddet fungerar."
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.name",
+      "value": "Logga förtrollningskatalog"
+    },
+    {
+      "key": "entry.Debug.LogEnchantmentCatalog.description",
+      "value": "Skriver en gång per session alla oljor och andra förtrollningsföremål som spelet definierar till BepInEx-loggen. Påverkar inte hur moddet fungerar."
+    }
+  ]
+}

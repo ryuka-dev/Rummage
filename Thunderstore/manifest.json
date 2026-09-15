@@ -1,0 +1,9 @@
+{
+  "name": "Rummage",
+  "version_number": "0.0.1",
+  "website_url": "https://github.com/ryuka-dev/Rummage",
+  "description": "Search and filter your backpack and stashes by name, oil or effect — and see which stash holds an item.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2305"
+  ]
+}
