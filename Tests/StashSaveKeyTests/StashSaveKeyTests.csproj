@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\src\Stashes\StashSaveKey.cs" Link="StashSaveKey.cs" />
+    <Compile Include="..\..\src\Stashes\StashNaming.cs" Link="StashNaming.cs" />
   </ItemGroup>
 
 </Project>

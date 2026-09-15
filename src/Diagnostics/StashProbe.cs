@@ -8,6 +8,7 @@ using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.Items;
 using PerfectRandom.Sulfur.Core.UI;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
+using PerfectRandom.Sulfur.Core.World;
 using Ryuka.Sulfur.Rummage.Stashes;
 using UnityEngine;
 
@@ -294,6 +295,7 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
                     + ", position=" + Vector(stash.transform.position)
                     + ", active=" + stash.gameObject.activeInHierarchy
                     + ", weapon rack=" + rackText
+                    + ", unlock item=" + DescribeUnlockItem(stash)
                     + ", size field=" + DescribeGridSize(stash.Grid)
                     + ", grid items=" + CountItems(stash.Grid)
                     + ", in InventoryUI.Stashes=" + (ui.Stashes != null && ui.Stashes.ContainsKey(identifier))
@@ -475,6 +477,24 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
             }
 
             return items.Count.ToString(CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// The item that unlocks this storage when brought to the church, if an UnlockableStorage
+        /// sits on the stash or above it. Evidence for whether its name can label the stash.
+        /// </summary>
+        private static string DescribeUnlockItem(PlayerStash stash)
+        {
+            UnlockableStorage unlock = stash.GetComponentInParent<UnlockableStorage>(true);
+            if (unlock == null)
+            {
+                return "none";
+            }
+
+            ItemDefinition item = unlock.itemBroughtToChurch;
+            return item == null
+                ? "unset"
+                : "'" + item.name + "' ('" + item.LocalizedDisplayName + "', shown when unlocked=" + unlock.value + ")";
         }
 
         private static string DescribeGridSize(ItemGrid grid)

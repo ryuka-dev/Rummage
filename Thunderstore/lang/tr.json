@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Sarf"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Sırt çantası"
+    },
+    {
+      "key": "summary.none",
+      "value": "Eşleşme yok"
+    },
+    {
+      "key": "stash.main",
+      "value": "Sandık"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Gardırop"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Bavul"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Kasa"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Büfe"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Buzdolabı"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Yılan sepeti"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Silah dolabı"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Silah askısı {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Tabut"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Tuvalet"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Sergi çerçevesi {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Duvar askısı {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Sandık #{0}"
     }
   ]
 }

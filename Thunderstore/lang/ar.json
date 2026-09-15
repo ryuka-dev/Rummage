@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "المستهلكات"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "الحقيبة"
+    },
+    {
+      "key": "summary.none",
+      "value": "لا توجد نتائج"
+    },
+    {
+      "key": "stash.main",
+      "value": "الخزانة"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "خزانة الملابس"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "حقيبة السفر"
+    },
+    {
+      "key": "stash.safe",
+      "value": "الخزنة"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "خزانة جانبية"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "الثلاجة"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "سلة الثعبان"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "خزانة الأسلحة"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "حامل الأسلحة {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "التابوت"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "المرحاض"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "إطار العرض {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "حامل جداري {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "الخزانة #{0}"
     }
   ]
 }

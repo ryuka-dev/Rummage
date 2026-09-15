@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "消耗品"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "バックパック"
+    },
+    {
+      "key": "summary.none",
+      "value": "一致するアイテムなし"
+    },
+    {
+      "key": "stash.main",
+      "value": "収納箱"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "衣装ダンス"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "スーツケース"
+    },
+    {
+      "key": "stash.safe",
+      "value": "金庫"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "サイドボード"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "冷蔵庫"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "蛇かご"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "ガンキャビネット"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "武器ラック {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "棺"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "トイレ"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "展示フレーム {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "壁掛け {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "収納箱 #{0}"
     }
   ]
 }

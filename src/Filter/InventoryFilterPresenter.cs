@@ -39,6 +39,9 @@ namespace Ryuka.Sulfur.Rummage.Filter
             filter.Changed += MarkDirty;
         }
 
+        /// <summary>Per-place match counts after each pass; null while no filter is active.</summary>
+        public event Action<List<LocationCount>> SummaryChanged;
+
         public void MarkDirty()
         {
             dirty = true;
@@ -124,14 +127,41 @@ namespace Ryuka.Sulfur.Rummage.Filter
             marked = markedThisPass;
             markedThisPass = previous;
 
+            List<LocationCount> counts = filter.IsActive ? StashInventoryCounter.Count(ui, filter) : null;
+            SummaryChanged?.Invoke(counts);
+
             if (diagnostics.LogSearchFilter.Value)
             {
                 PlayerStash station = ui.CurrentServiceStation as PlayerStash;
                 RummagePlugin.Log.LogInfo("[SearchFilter] text='" + filter.Text + "', category=" + filter.Category
                     + ", active=" + filter.IsActive
                     + ": backpack " + backpackMatches + "/" + backpackItems
-                    + (station != null ? ", stash '" + station.StashIdentifier + "' " + stashMatches + "/" + stashItems : string.Empty));
+                    + (station != null ? ", stash '" + station.StashIdentifier + "' " + stashMatches + "/" + stashItems : string.Empty)
+                    + (counts != null ? " | counts: " + DescribeCounts(counts) : string.Empty));
             }
+        }
+
+        private static string DescribeCounts(List<LocationCount> counts)
+        {
+            if (counts.Count == 0)
+            {
+                return "<none>";
+            }
+
+            System.Text.StringBuilder text = new System.Text.StringBuilder();
+            foreach (LocationCount count in counts)
+            {
+                if (text.Length > 0)
+                {
+                    text.Append(", ");
+                }
+
+                text.Append(count.Identifier == null ? "<backpack>" : "'" + count.Identifier + "'")
+                    .Append('=').Append(count.Quantity)
+                    .Append(count.Live ? " live" : " saved");
+            }
+
+            return text.ToString();
         }
 
         /// <summary>Marks every item in the grid; returns how many match.</summary>

@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Расходники"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Рюкзак"
+    },
+    {
+      "key": "summary.none",
+      "value": "Нет совпадений"
+    },
+    {
+      "key": "stash.main",
+      "value": "Хранилище"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Шкаф"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Чемодан"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Сейф"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Сервант"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Холодильник"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Корзина для змей"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Оружейный шкаф"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Оружейная стойка {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Гроб"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Унитаз"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Витрина {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Настенное крепление {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Хранилище #{0}"
     }
   ]
 }

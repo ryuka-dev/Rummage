@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Consommables"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Sac à dos"
+    },
+    {
+      "key": "summary.none",
+      "value": "Aucun résultat"
+    },
+    {
+      "key": "stash.main",
+      "value": "Coffre"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Armoire"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Valise"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Coffre-fort"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Buffet"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Réfrigérateur"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Panier à serpent"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Armoire à fusils"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Râtelier {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Cercueil"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Toilettes"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Cadre d'exposition {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Support mural {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Coffre #{0}"
     }
   ]
 }

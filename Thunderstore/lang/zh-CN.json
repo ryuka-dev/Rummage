@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "消耗品"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "背包"
+    },
+    {
+      "key": "summary.none",
+      "value": "没有匹配的物品"
+    },
+    {
+      "key": "stash.main",
+      "value": "箱子"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "衣柜"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "手提箱"
+    },
+    {
+      "key": "stash.safe",
+      "value": "保险箱"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "餐边柜"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "冰箱"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "蛇篮"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "枪柜"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "武器架 {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "棺材"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "马桶"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "展示框 {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "壁挂 {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "箱子 #{0}"
     }
   ]
 }

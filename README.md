@@ -19,10 +19,14 @@ In development (phase 1).
 - While the search box has focus, the inventory's keyboard shortcuts do not fire; Escape leaves the
   box instead of closing the inventory.
 - The filter stays set until cleared, for the rest of the session. It is not saved.
+- While a filter is active, a line under the buttons counts the matches per place, for example
+  `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. Stashes whose grid the game has set up (all of them
+  in the church) are counted live; the rest from the save's stash table, which the game refreshes
+  when a stash closes. Item frames and wall mounts count as places too. Stash names come from
+  Rummage's own table; an identifier it does not know shows as "Stash #n".
 
 Planned:
 
-2. Per-stash counts for the current search, for example `Backpack ×1 · Stash ×2 · Weapon rack ×1`.
 3. Later: world markers on the matching stashes in the church.
 
 Constraints the design keeps:

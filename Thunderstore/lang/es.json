@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Consumibles"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Mochila"
+    },
+    {
+      "key": "summary.none",
+      "value": "Sin coincidencias"
+    },
+    {
+      "key": "stash.main",
+      "value": "Alijo"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Armario"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Maleta"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Caja fuerte"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Aparador"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Nevera"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Cesta de serpiente"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Armero"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Soporte de armas {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Ataúd"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Inodoro"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Marco de exhibición {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Soporte de pared {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Alijo #{0}"
     }
   ]
 }

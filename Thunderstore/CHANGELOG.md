@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.3
+
+* While a search or category is active, a line under the search bar shows where the matching items are, for example `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. Stashes, weapon racks, item frames and wall mounts are all counted, including the ones not currently open.
+* Fixed the search box: typed text and the caret were invisible in Chinese, Japanese and Korean, and Backspace left the box instead of deleting.
+
 ## 0.0.2
 
 * Added a search bar above the backpack. It matches item names in the current language and in English, oil and scroll names, and effect text; Chinese names also match pinyin.

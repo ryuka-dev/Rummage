@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "소모품"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "배낭"
+    },
+    {
+      "key": "summary.none",
+      "value": "일치하는 아이템 없음"
+    },
+    {
+      "key": "stash.main",
+      "value": "보관함"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "옷장"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "여행 가방"
+    },
+    {
+      "key": "stash.safe",
+      "value": "금고"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "찬장"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "냉장고"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "뱀 바구니"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "총기 보관함"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "무기 거치대 {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "관"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "변기"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "전시 액자 {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "벽걸이 {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "보관함 #{0}"
     }
   ]
 }

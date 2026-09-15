@@ -25,6 +25,7 @@ namespace Ryuka.Sulfur.Rummage.Filter
         {
             presenter = new InventoryFilterPresenter(filter, diagnostics);
             searchBar = new SearchBar(filter, diagnostics);
+            presenter.SummaryChanged += searchBar.SetSummary;
 
             SearchInputGuard.IsTyping = () => searchBar.IsFocused;
             SearchInputGuard.StopTyping = searchBar.Unfocus;

@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Verbrauchsgüter"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Rucksack"
+    },
+    {
+      "key": "summary.none",
+      "value": "Keine Treffer"
+    },
+    {
+      "key": "stash.main",
+      "value": "Truhe"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Kleiderschrank"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Koffer"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Tresor"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Anrichte"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Kühlschrank"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Schlangenkorb"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Waffenschrank"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Waffenständer {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Sarg"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Toilette"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Vitrinenrahmen {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Wandhalterung {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Truhe #{0}"
     }
   ]
 }

@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Consumabili"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Zaino"
+    },
+    {
+      "key": "summary.none",
+      "value": "Nessuna corrispondenza"
+    },
+    {
+      "key": "stash.main",
+      "value": "Deposito"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Armadio"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Valigia"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Cassaforte"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Credenza"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Frigorifero"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Cesta del serpente"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Armadietto armi"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Rastrelliera {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Bara"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Water"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Cornice espositiva {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Supporto a parete {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Deposito #{0}"
     }
   ]
 }

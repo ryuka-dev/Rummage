@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Consumíveis"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Mochila"
+    },
+    {
+      "key": "summary.none",
+      "value": "Nenhum resultado"
+    },
+    {
+      "key": "stash.main",
+      "value": "Baú"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Guarda-roupa"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Mala"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Cofre"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Aparador"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Geladeira"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Cesto de cobra"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Armário de armas"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Suporte de armas {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Caixão"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Vaso sanitário"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Moldura de exibição {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Suporte de parede {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Baú #{0}"
     }
   ]
 }

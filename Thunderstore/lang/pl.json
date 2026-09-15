@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Zużywalne"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Plecak"
+    },
+    {
+      "key": "summary.none",
+      "value": "Brak wyników"
+    },
+    {
+      "key": "stash.main",
+      "value": "Skrytka"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Szafa"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Walizka"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Sejf"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Kredens"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Lodówka"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Kosz na węże"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Szafa na broń"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Stojak na broń {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Trumna"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Toaleta"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Rama ekspozycyjna {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Uchwyt ścienny {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Skrytka #{0}"
     }
   ]
 }

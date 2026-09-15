@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.Items;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
 using Ryuka.Sulfur.Rummage.Diagnostics;
 using Ryuka.Sulfur.Rummage.Filter;
+using Ryuka.Sulfur.Rummage.Game;
 using Ryuka.Sulfur.Rummage.Localization;
 using Ryuka.Sulfur.Rummage.Search;
 using TMPro;
@@ -25,6 +27,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float InputFontSize = 18f;
         private const float MinimumInputFontSize = 12f;
         private const float ButtonRowHeight = 26f;
+        private const float SummaryHeight = 40f;
+        private const float SummaryFontSize = 14f;
         private const float Gap = 4f;
         private const float MarginAboveGrid = 6f;
         private const float ClearButtonWidth = 72f;
@@ -45,6 +49,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private RectTransform clearRect;
         private TextMeshProUGUI placeholder;
         private TextMeshProUGUI clearLabel;
+        private TextMeshProUGUI summary;
+        private List<LocationCount> summaryCounts;
 
         private RectTransform placedFor;
         private Rect placedForRect;
@@ -152,6 +158,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             {
                 button.Label.text = CategoryLabel(button.Category);
             }
+
+            RenderSummary();
         }
 
         public void Dispose()
@@ -217,6 +225,14 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                     });
                 }
 
+                // Overflow with auto-sizing: the line may wrap to two rows, and TMP's Ellipsis mode
+                // would blank it entirely once a CJK line is taller than the rect.
+                summary = CreateText(rootRect, "Summary", font, SummaryFontSize, Theme.TextMuted, TextAlignmentOptions.TopLeft, TextOverflowModes.Overflow);
+                summary.textWrappingMode = TextWrappingModes.Normal;
+                summary.enableAutoSizing = true;
+                summary.fontSizeMin = 10f;
+                summary.fontSizeMax = SummaryFontSize;
+
                 input.SetTextWithoutNotify(filter.Text);
                 placedFor = null;
                 RefreshTexts();
@@ -262,7 +278,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             Vector3 topRight = parent.InverseTransformPoint(Corners[2]);
 
             float width = Mathf.Max(MinimumWidth, topRight.x - topLeft.x);
-            rootRect.sizeDelta = new Vector2(width, RowHeight + Gap + ButtonRowHeight);
+            rootRect.sizeDelta = new Vector2(width, RowHeight + Gap + ButtonRowHeight + Gap + SummaryHeight);
             rootRect.localPosition = new Vector3(topLeft.x, topLeft.y + MarginAboveGrid, 0f);
             rootRect.SetAsLastSibling();
 
@@ -287,6 +303,48 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             {
                 SetTopLeft(categoryButtons[i].Rect, i * (buttonWidth + Gap), RowHeight + Gap, buttonWidth, ButtonRowHeight);
             }
+
+            SetTopLeft(summary.rectTransform, 0f, RowHeight + Gap + ButtonRowHeight + Gap, width, SummaryHeight);
+        }
+
+        /// <summary>Shows where the matches are; null hides the line.</summary>
+        public void SetSummary(List<LocationCount> counts)
+        {
+            summaryCounts = counts;
+            RenderSummary();
+        }
+
+        private void RenderSummary()
+        {
+            if (summary == null)
+            {
+                return;
+            }
+
+            if (summaryCounts == null)
+            {
+                summary.text = string.Empty;
+                return;
+            }
+
+            if (summaryCounts.Count == 0)
+            {
+                summary.text = RummageText.Get("summary.none", "No matches");
+                return;
+            }
+
+            StringBuilder text = new StringBuilder();
+            foreach (LocationCount count in summaryCounts)
+            {
+                if (text.Length > 0)
+                {
+                    text.Append("  ·  ");
+                }
+
+                text.Append(count.Label).Append(" ×").Append(count.Quantity);
+            }
+
+            summary.text = text.ToString();
         }
 
         private void RefreshSelection()

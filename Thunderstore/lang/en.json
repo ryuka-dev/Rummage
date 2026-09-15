@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Consumables"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Backpack"
+    },
+    {
+      "key": "summary.none",
+      "value": "No matches"
+    },
+    {
+      "key": "stash.main",
+      "value": "Stash"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Wardrobe"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Suitcase"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Safe"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Sideboard"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Fridge"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Snake basket"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Gun cabinet"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Weapon rack {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Coffin"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Toilet"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Item frame {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Wall mount {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Stash #{0}"
     }
   ]
 }

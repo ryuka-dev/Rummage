@@ -67,6 +67,70 @@
     {
       "key": "category.consumables",
       "value": "Förbrukning"
+    },
+    {
+      "key": "summary.backpack",
+      "value": "Ryggsäck"
+    },
+    {
+      "key": "summary.none",
+      "value": "Inga träffar"
+    },
+    {
+      "key": "stash.main",
+      "value": "Förråd"
+    },
+    {
+      "key": "stash.wardrobe",
+      "value": "Garderob"
+    },
+    {
+      "key": "stash.suitcase",
+      "value": "Resväska"
+    },
+    {
+      "key": "stash.safe",
+      "value": "Kassaskåp"
+    },
+    {
+      "key": "stash.sideboard",
+      "value": "Skänk"
+    },
+    {
+      "key": "stash.fridge",
+      "value": "Kylskåp"
+    },
+    {
+      "key": "stash.snakeBasket",
+      "value": "Ormkorg"
+    },
+    {
+      "key": "stash.gunCabinet",
+      "value": "Vapenskåp"
+    },
+    {
+      "key": "stash.weaponRack",
+      "value": "Vapenställ {0}"
+    },
+    {
+      "key": "stash.coffin",
+      "value": "Kista"
+    },
+    {
+      "key": "stash.toilet",
+      "value": "Toalett"
+    },
+    {
+      "key": "stash.itemFrame",
+      "value": "Visningsram {0}"
+    },
+    {
+      "key": "stash.wallMount",
+      "value": "Väggfäste {0}"
+    },
+    {
+      "key": "stash.unknown",
+      "value": "Förråd #{0}"
     }
   ]
 }
