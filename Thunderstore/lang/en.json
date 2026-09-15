@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "Also find weapons by the oils applied to them"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "Hide Inventory Key Hints"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "Hides the game's key hints (rotate, use and so on) above the backpack, which the search bar covers. Turn off to show them again."
     }
   ]
 }

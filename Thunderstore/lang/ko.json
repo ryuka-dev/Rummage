@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "무기에 바른 오일로도 무기를 검색합니다"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "인벤토리 키 안내 숨기기"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "배낭 위에 표시되는 게임의 키 안내(회전, 사용 등)를 숨깁니다. 검색창에 가려지는 부분입니다. 끄면 다시 표시됩니다."
     }
   ]
 }

@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "Hitta även vapen efter oljorna som lagts på dem"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "Dölj knapptips i förrådet"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "Döljer spelets knapptips (rotera, använd med mera) ovanför ryggsäcken, som sökfältet täcker. Stäng av för att visa dem igen."
     }
   ]
 }

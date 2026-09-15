@@ -34,7 +34,6 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float CheckboxIconInset = 3f;
         private const float CheckboxFallbackInset = 7f;
         private const float CheckboxIconOffAlpha = 0.45f;
-        private const float TooltipMaximumWidth = 280f;
         private const float TooltipFontSize = 14f;
         private const float MinimumWidth = 360f;
         private const int CharacterLimit = 64;
@@ -444,8 +443,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             background.color = UiTheme.Panel;
             background.raycastTarget = false;
 
+            // One line, never wrapped: a second line would fall under the results line below the bar.
             tooltipText = UiParts.CreateText(tooltipRect, "Text", font, TooltipFontSize, UiTheme.Text, TextAlignmentOptions.MidlineLeft, texts, TextOverflowModes.Overflow);
-            tooltipText.textWrappingMode = TextWrappingModes.Normal;
+            tooltipText.textWrappingMode = TextWrappingModes.NoWrap;
             tooltipText.rectTransform.offsetMin = new Vector2(8f, 4f);
             tooltipText.rectTransform.offsetMax = new Vector2(-8f, -4f);
 
@@ -467,8 +467,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 return;
             }
 
-            Vector2 preferred = tooltipText.GetPreferredValues(tooltipText.text, TooltipMaximumWidth - 16f, 0f);
-            float width = Mathf.Min(TooltipMaximumWidth, preferred.x + 16f);
+            Vector2 preferred = tooltipText.GetPreferredValues(tooltipText.text, float.PositiveInfinity, 0f);
+            float width = preferred.x + 16f;
             float height = preferred.y + 8f;
             float right = barWidth - ClearButtonWidth - Gap;
 

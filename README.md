@@ -74,6 +74,7 @@ dotnet run --project Tests/StashSaveKeyTests
 | Key | Default | Effect |
 | --- | --- | --- |
 | `ResultsPosition` | `BelowSearchBar` | `BelowSearchBar`: results under the search bar, over the backpack, growing with the list. `AboveSearchBar`: above the search bar, shorter. Applies live. |
+| `HideInventoryKeyHints` | `true` | Hides the game's key hints above the backpack, which the search bar covers. Applies live. |
 
 `[Debug]` log switches. They never change what the mod does.
 

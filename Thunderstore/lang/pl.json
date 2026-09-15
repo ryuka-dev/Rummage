@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "Znajduj też broń po nałożonych na nią olejach"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "Ukryj podpowiedzi klawiszy ekwipunku"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "Ukrywa podpowiedzi klawiszy gry (obrót, użycie itd.) nad plecakiem, zasłaniane przez pasek wyszukiwania. Wyłącz, aby znów je pokazać."
     }
   ]
 }

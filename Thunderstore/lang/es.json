@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "Buscar también armas por los aceites aplicados"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "Ocultar ayudas de teclas del inventario"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "Oculta las ayudas de teclas del juego (girar, usar, etc.) sobre la mochila, que la barra de búsqueda tapa. Desactívalo para volver a mostrarlas."
     }
   ]
 }

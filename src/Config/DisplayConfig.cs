@@ -24,8 +24,16 @@ namespace Ryuka.Sulfur.Rummage.Config
                 "ResultsPosition",
                 ResultsPosition.BelowSearchBar,
                 "Where the search results sit. BelowSearchBar: over the top of the backpack, growing with the list up to the bottom of the screen. AboveSearchBar: above the search bar, in a shorter scrolling panel.");
+
+            HideInventoryKeyHints = config.Bind(
+                Section,
+                "HideInventoryKeyHints",
+                true,
+                "Hides the game's key hints (rotate, use and so on) above the backpack, which the search bar covers. Turn off to show them again.");
         }
 
         public ConfigEntry<ResultsPosition> ResultsPlacement { get; }
+
+        public ConfigEntry<bool> HideInventoryKeyHints { get; }
     }
 }

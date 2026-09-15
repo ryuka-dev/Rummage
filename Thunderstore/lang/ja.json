@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "付与したオイルでも武器を検索する"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "インベントリのキー説明を隠す"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "バックパックの上に表示されるゲームのキー説明（回転、使用など）を隠します。検索バーに覆われる部分です。オフにすると再び表示されます。"
     }
   ]
 }

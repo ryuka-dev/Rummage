@@ -17,7 +17,7 @@ namespace Ryuka.Sulfur.Rummage
     {
         public const string PluginGuid = "ryuka.sulfur.rummage";
         public const string PluginName = "Rummage";
-        public const string PluginVersion = "0.0.6";
+        public const string PluginVersion = "0.0.7";
 
         internal static ManualLogSource Log;
 
@@ -36,6 +36,7 @@ namespace Ryuka.Sulfur.Rummage
             GameTermProbe.Initialize(diagnostics);
 
             DisplayConfig display = new DisplayConfig(Config);
+            InventoryLegend.Initialize(display.HideInventoryKeyHints);
             controller = new RummageController(diagnostics, display);
             InventoryStatePatch.StateSet += controller.OnInventoryStateSet;
             InventoryStatePatch.StateSet += GameTermProbe.OnInventoryStateSet;
@@ -51,6 +52,7 @@ namespace Ryuka.Sulfur.Rummage
             harmony = new Harmony(PluginGuid);
             int failed = 0;
             failed += Patch(typeof(InventoryStatePatch), "search bar, item filter and world markers");
+            failed += Patch(typeof(InventoryLegendPatch), "hiding of the inventory key hints");
             failed += Patch(typeof(InventoryKeyGuardPatch), "typing guard for inventory keys");
             failed += Patch(typeof(InventoryCancelGuardPatch), "typing guard for the close inventory keys");
             failed += Patch(typeof(PlayerStashDoSetupProbePatch), "stash setup probe");
@@ -93,6 +95,7 @@ namespace Ryuka.Sulfur.Rummage
             controller = null;
 
             StashProbe.Shutdown();
+            InventoryLegend.Shutdown();
 
             if (harmony != null)
             {

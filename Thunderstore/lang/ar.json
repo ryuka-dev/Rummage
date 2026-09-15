@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "ابحث أيضًا عن الأسلحة حسب الزيوت المطبقة عليها"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "إخفاء تلميحات أزرار الحقيبة"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "يخفي تلميحات الأزرار في اللعبة (التدوير والاستخدام وغيرها) أعلى الحقيبة، والتي يغطيها شريط البحث. أوقفه لإظهارها مجددًا."
     }
   ]
 }

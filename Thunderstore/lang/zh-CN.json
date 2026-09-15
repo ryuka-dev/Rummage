@@ -155,6 +155,14 @@
     {
       "key": "search.appliedOils.tooltip",
       "value": "同时按武器上涂的魔油搜索武器"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.name",
+      "value": "隐藏背包按键说明"
+    },
+    {
+      "key": "entry.Display.HideInventoryKeyHints.description",
+      "value": "隐藏游戏在背包上方显示的按键说明（旋转、使用等），它们会被搜索栏盖住。关闭此项可重新显示。"
     }
   ]
 }

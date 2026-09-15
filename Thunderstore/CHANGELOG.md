@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.7
+
+* The game's key hints above the backpack (rotate, use and so on), which the search bar covers, are hidden. New setting Display > Hide Inventory Key Hints (on by default) brings them back when turned off, without restarting.
+* The checkbox tooltip stays on one line instead of wrapping under the results line.
+
 ## 0.0.6
 
 * Ctrl+F puts the caret in the search box while it is on screen.
