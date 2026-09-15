@@ -1,0 +1,2 @@
+# Language files are read by other plugins and must stay LF regardless of core.autocrlf.
+Thunderstore/lang/*.json text eol=lf
