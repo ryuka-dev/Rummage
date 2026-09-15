@@ -20,7 +20,10 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
     /// </summary>
     internal sealed class SearchBar : IDisposable
     {
-        private const float RowHeight = 30f;
+        private const float RowHeight = 32f;
+        private const float InputAreaPadding = 1f;
+        private const float InputFontSize = 18f;
+        private const float MinimumInputFontSize = 12f;
         private const float ButtonRowHeight = 26f;
         private const float Gap = 4f;
         private const float MarginAboveGrid = 6f;
@@ -394,6 +397,14 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                     text.font = font;
                 }
             }
+
+            if (input != null)
+            {
+                // Through the field, so it re-measures its text and caret for the new font.
+                float size = FitInputFontSize(font);
+                input.fontAsset = font;
+                input.pointSize = size;
+            }
         }
 
         private TMP_InputField CreateInput(RectTransform parent, TMP_FontAsset font)
@@ -402,11 +413,15 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             RectTransform rect = go.GetComponent<RectTransform>();
             rect.SetParent(parent, false);
 
+            // TMP_InputField creates its caret and hooks its text component in OnEnable, and only if
+            // the text component is already assigned by then. Wire everything while inactive.
+            go.SetActive(false);
+
             Image background = go.GetComponent<Image>();
             background.color = Theme.Field;
             background.raycastTarget = true;
 
-            TMP_InputField field = go.AddComponent<TMP_InputField>();
+            SearchInputField field = go.AddComponent<SearchInputField>();
             field.targetGraphic = background;
             field.lineType = TMP_InputField.LineType.SingleLine;
             field.characterLimit = CharacterLimit;
@@ -426,17 +441,40 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             areaRect.SetParent(rect, false);
             areaRect.anchorMin = Vector2.zero;
             areaRect.anchorMax = Vector2.one;
-            areaRect.offsetMin = new Vector2(8f, 2f);
-            areaRect.offsetMax = new Vector2(-8f, -2f);
+            areaRect.offsetMin = new Vector2(8f, InputAreaPadding);
+            areaRect.offsetMax = new Vector2(-8f, -InputAreaPadding);
 
-            TextMeshProUGUI text = CreateText(areaRect, "Text", font, 18f, Theme.Text, TextAlignmentOptions.MidlineLeft);
-            placeholder = CreateText(areaRect, "Placeholder", font, 18f, Theme.TextMuted, TextAlignmentOptions.MidlineLeft);
+            // Overflow, not Ellipsis: TMP draws nothing at all when the first line is taller than
+            // the rect in the Ellipsis and Truncate modes, and CJK fonts have tall lines. The
+            // viewport's RectMask2D clips the text instead.
+            float size = FitInputFontSize(font);
+            TextMeshProUGUI text = CreateText(areaRect, "Text", font, size, Theme.Text, TextAlignmentOptions.MidlineLeft, TextOverflowModes.Overflow);
+            placeholder = CreateText(areaRect, "Placeholder", font, size, Theme.TextMuted, TextAlignmentOptions.MidlineLeft, TextOverflowModes.Overflow);
 
             field.textViewport = areaRect;
             field.textComponent = text;
             field.placeholder = placeholder;
+            field.pointSize = size;
             field.onValueChanged.AddListener(filter.SetText);
+
+            go.SetActive(true);
             return field;
+        }
+
+        /// <summary>
+        /// The largest size up to <see cref="InputFontSize"/> whose line height fits the input area,
+        /// from the font's own metrics. CJK fonts have much taller lines than the Latin one.
+        /// </summary>
+        private static float FitInputFontSize(TMP_FontAsset font)
+        {
+            float available = RowHeight - InputAreaPadding * 2f;
+            if (font == null || font.faceInfo.pointSize <= 0f || font.faceInfo.lineHeight <= 0f)
+            {
+                return InputFontSize;
+            }
+
+            float lineHeightPerPoint = font.faceInfo.lineHeight / font.faceInfo.pointSize;
+            return Mathf.Clamp(Mathf.Floor(available / lineHeightPerPoint), MinimumInputFontSize, InputFontSize);
         }
 
         private Button CreateButton(RectTransform parent, string name, TMP_FontAsset font, out TextMeshProUGUI label)
@@ -467,7 +505,14 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             return button;
         }
 
-        private TextMeshProUGUI CreateText(RectTransform parent, string name, TMP_FontAsset font, float size, Color color, TextAlignmentOptions alignment)
+        private TextMeshProUGUI CreateText(
+            RectTransform parent,
+            string name,
+            TMP_FontAsset font,
+            float size,
+            Color color,
+            TextAlignmentOptions alignment,
+            TextOverflowModes overflow = TextOverflowModes.Ellipsis)
         {
             GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
             RectTransform rect = go.GetComponent<RectTransform>();
@@ -488,7 +533,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             text.alignment = alignment;
             text.raycastTarget = false;
             text.textWrappingMode = TextWrappingModes.NoWrap;
-            text.overflowMode = TextOverflowModes.Ellipsis;
+            text.overflowMode = overflow;
 
             texts.Add(text);
             return text;
