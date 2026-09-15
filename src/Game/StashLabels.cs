@@ -53,9 +53,11 @@ namespace Ryuka.Sulfur.Rummage.Game
                         ? rack + " " + name.Number
                         : Numbered(RummageText.Get("stash.weaponRack", "Weapon rack {0}"), "Weapon rack {0}", name.Number);
                 case StashKind.ItemFrame:
-                    return Numbered(RummageText.Get("stash.itemFrame", "Item frame {0}"), "Item frame {0}", name.Number);
+                    return Official(ItemFrameItem(name.Number))
+                        ?? Numbered(RummageText.Get("stash.itemFrame", "Item frame {0}"), "Item frame {0}", name.Number);
                 case StashKind.WallMount:
-                    return Numbered(RummageText.Get("stash.wallMount", "Wall mount {0}"), "Wall mount {0}", name.Number);
+                    return Official(WallMountItem(name.Number))
+                        ?? Numbered(RummageText.Get("stash.wallMount", "Wall mount {0}"), "Wall mount {0}", name.Number);
                 default:
                     return Numbered(RummageText.Get("stash.unknown", "Stash #{0}"), "Stash #{0}", UnknownNumber(identifier));
             }
@@ -63,7 +65,7 @@ namespace Ryuka.Sulfur.Rummage.Game
 
         /// <summary>
         /// The game's own name for the item that unlocks a storage, in the current language. Only
-        /// used where probe round Misc/27 showed that item on the stash's UnlockableStorage.
+        /// used where probe rounds Misc/27 and Misc/28 showed that item on the storage's UnlockableStorage.
         /// Null when the item database is not available, so the table name is used instead.
         /// </summary>
         private static string Official(ItemId id)
@@ -96,6 +98,43 @@ namespace Ryuka.Sulfur.Rummage.Game
                     return ItemIds.Item_WeaponRack1;
                 case 3:
                     return ItemIds.Item_WeaponRack2;
+                default:
+                    return ItemId.None;
+            }
+        }
+
+        /// <summary>
+        /// The frame each ItemFrameNN carries, as probe round Misc/28 showed. The paintings are not
+        /// in identifier order, and each has its own name, so no number is added.
+        /// </summary>
+        private static ItemId ItemFrameItem(int number)
+        {
+            switch (number)
+            {
+                case 1:
+                    return ItemIds.Item_Painting3;
+                case 2:
+                    return ItemIds.Item_Painting2;
+                case 3:
+                    return ItemIds.Item_Painting1;
+                case 4:
+                    return ItemIds.Item_Painting4;
+                default:
+                    return ItemId.None;
+            }
+        }
+
+        /// <summary>WallMount0..2 are unlocked by Item_WallMount0..2 (left, centre, right), each named on its own.</summary>
+        private static ItemId WallMountItem(int number)
+        {
+            switch (number)
+            {
+                case 1:
+                    return ItemIds.Item_WallMount0;
+                case 2:
+                    return ItemIds.Item_WallMount1;
+                case 3:
+                    return ItemIds.Item_WallMount2;
                 default:
                     return ItemId.None;
             }

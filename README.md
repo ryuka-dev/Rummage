@@ -24,9 +24,9 @@ In development (phase 1).
   list of the matching items in each place. Stashes whose grid the game has set up (all of them
   in the church) are counted live; the rest from the save's stash table, which the game refreshes
   when a stash closes. Item frames and wall mounts count as places too. Storage names use the
-  game's own name for the storage's unlock item where the stash was seen carrying that
-  UnlockableStorage (every stash except the main one); the main stash, item frames and wall
-  mounts use Rummage's own table, and an identifier it does not know shows as "Stash #n".
+  game's own name for the storage's unlock item, where probe rounds showed the storage carrying
+  that UnlockableStorage (every storage except the main stash, which has none and uses
+  Rummage's own table). An identifier Rummage does not know shows as "Stash #n".
 
 Planned:
 
