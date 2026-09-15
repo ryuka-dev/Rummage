@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "検索結果の表示位置。BelowSearchBar：検索バーの下、バックパックの上に重ねて表示し、リストに合わせて画面下端まで伸びます。AboveSearchBar：検索バーの上に、低めのスクロールパネルで表示します。"
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "付与したオイルでも武器を検索する"
     }
   ]
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.6
+
+* Ctrl+F puts the caret in the search box while it is on screen.
+* New checkbox next to the search box: when ticked, weapons are also found by the oils and scrolls applied to them, in the backpack, open stashes, the counts and the world labels. Words may split between the weapon and its oil ("shotgun crit"). Hover it for a short explanation.
+
 ## 0.0.5
 
 * The search results now sit under the search bar, over the top of the backpack, by default. Expanded, the item list grows with its content down to the bottom of the screen, never taller than the list itself.

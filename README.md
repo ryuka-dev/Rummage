@@ -19,6 +19,10 @@ In development (phase 1).
 - While the search box has focus, the inventory's keyboard shortcuts do not fire; Escape leaves the
   box instead of closing the inventory.
 - The filter stays set until cleared, for the rest of the session. It is not saved.
+- Ctrl+F focuses the search box while the bar is on screen.
+- The square checkbox beside the search box (hover for its tooltip) makes weapons match the oils
+  and scrolls applied to them as well. Each word may match either the weapon or one of its oils.
+  The category buttons still apply to the item itself.
 - While a filter is active, a line next to the search bar counts the matches per place, for example
   `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. The square button at its end expands a scrollable
   list of the matching items in each place. By default it hangs under the search bar over the top

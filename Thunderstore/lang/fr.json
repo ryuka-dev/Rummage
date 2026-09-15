@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Emplacement des résultats de recherche. BelowSearchBar : sous la barre de recherche, par-dessus le sac, s'agrandit avec la liste jusqu'au bas de l'écran. AboveSearchBar : au-dessus de la barre de recherche, dans un panneau plus bas qui défile."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Trouver aussi les armes par les huiles qui leur sont appliquées"
     }
   ]
 }

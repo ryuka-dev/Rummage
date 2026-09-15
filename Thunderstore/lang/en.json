@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Where the search results sit. BelowSearchBar: over the top of the backpack, growing with the list up to the bottom of the screen. AboveSearchBar: above the search bar, in a shorter scrolling panel."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Also find weapons by the oils applied to them"
     }
   ]
 }

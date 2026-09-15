@@ -90,6 +90,31 @@ namespace Ryuka.Sulfur.Rummage.Tests
             filter.SetCategory(ItemCategory.Other);
             Check(filter.Category == ItemCategory.All, "Other is never selectable");
 
+            // Applied enchantments widen the text match only while the option is on.
+            InventoryFilter oiled = new InventoryFilter();
+            int oiledChanges = 0;
+            oiled.Changed += () => oiledChanges++;
+            SearchableText shotgun = SearchableText.Create(new[] { "Shotgun", "霰弹枪" });
+            SearchableText critOil = SearchableText.Create(new[] { "Crit Oil", "暴击魔油" });
+            SearchableText[] applied = { critOil };
+
+            oiled.SetText("crit");
+            Check(!oiled.Accepts(ItemCategory.Weapons, shotgun, applied), "applied oil ignored while the option is off");
+            oiled.SetIncludeAppliedEnchantments(true);
+            Check(oiled.IncludeAppliedEnchantments && oiledChanges == 2, "turning the option on notifies once");
+            oiled.SetIncludeAppliedEnchantments(true);
+            Check(oiledChanges == 2, "setting the same option value does not notify");
+            Check(oiled.Accepts(ItemCategory.Weapons, shotgun, applied), "applied oil matches while the option is on");
+            Check(!oiled.Accepts(ItemCategory.Weapons, shotgun, null), "no applied oils, no match");
+            oiled.SetText("shotgun crit");
+            Check(oiled.Accepts(ItemCategory.Weapons, shotgun, applied), "terms may split between the item and its oil");
+            oiled.SetText("baoji");
+            Check(oiled.Accepts(ItemCategory.Weapons, shotgun, applied), "pinyin reaches applied oils too");
+            oiled.SetCategory(ItemCategory.Oils);
+            Check(!oiled.Accepts(ItemCategory.Weapons, shotgun, applied), "the category still applies to the item itself");
+            oiled.Clear();
+            Check(oiled.IncludeAppliedEnchantments, "clearing the search keeps the option");
+
             ItemCategory walked = ItemCategory.All;
             for (int i = 0; i < ItemCategories.Selectable.Length; i++)
             {

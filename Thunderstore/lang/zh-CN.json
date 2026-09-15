@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "搜索结果显示的位置。BelowSearchBar：搜索栏下方、盖在背包上，高度随列表增长，最多到屏幕底部。AboveSearchBar：搜索栏上方，面板较矮，可滚动。"
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "同时按武器上涂的魔油搜索武器"
     }
   ]
 }

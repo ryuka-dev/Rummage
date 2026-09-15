@@ -189,8 +189,7 @@ namespace Ryuka.Sulfur.Rummage.Filter
                 FilterMark mark = FilterMark.Neutral;
                 if (active)
                 {
-                    ItemSearchCatalog.Entry entry = ItemSearchCatalog.Get(item.itemDefinition);
-                    bool match = filter.Accepts(entry.Category, entry.Text);
+                    bool match = ItemMatcher.Matches(item, filter);
                     mark = match ? FilterMark.Match : FilterMark.Dimmed;
                     if (match)
                     {

@@ -31,6 +31,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float Gap = 4f;
         private const float MarginAboveGrid = 6f;
         private const float ClearButtonWidth = 72f;
+        private const float CheckMarkInset = 7f;
+        private const float TooltipMaximumWidth = 280f;
+        private const float TooltipFontSize = 14f;
         private const float MinimumWidth = 360f;
         private const int CharacterLimit = 64;
 
@@ -50,6 +53,11 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private RectTransform clearRect;
         private TextMeshProUGUI placeholder;
         private TextMeshProUGUI clearLabel;
+        private RectTransform checkboxRect;
+        private GameObject checkMark;
+        private RectTransform tooltipRect;
+        private TextMeshProUGUI tooltipText;
+        private float barWidth;
 
         private RectTransform placedFor;
         private Rect placedForRect;
@@ -83,6 +91,29 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         public bool IsFocused
         {
             get { return input != null && input.isFocused; }
+        }
+
+        /// <summary>True while the bar is on screen, which is when the focus shortcut may act.</summary>
+        public bool IsVisible
+        {
+            get { return root != null && root.activeInHierarchy && input != null; }
+        }
+
+        /// <summary>Puts the caret in the search box, as clicking it would.</summary>
+        public void FocusInput()
+        {
+            if (!IsVisible)
+            {
+                return;
+            }
+
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(input.gameObject);
+            }
+
+            input.ActivateInputField();
         }
 
         public void Tick(InventoryUI ui)
@@ -142,6 +173,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             }
 
             results.SetShown(false);
+            ShowTooltip(false);
         }
 
         public void Unfocus()
@@ -177,6 +209,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
 
             placeholder.text = RummageText.Get("search.placeholder", "Search name, oil or effect");
             clearLabel.text = RummageText.Get("search.clear", "Clear");
+            tooltipText.text = RummageText.Get("search.appliedOils.tooltip", "Also find weapons by the oils applied to them");
 
             foreach (CategoryButton button in categoryButtons)
             {
@@ -232,6 +265,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 Button clear = UiParts.CreateButton(rootRect, "Clear", font, texts, out clearLabel);
                 clearRect = clear.GetComponent<RectTransform>();
                 clear.onClick.AddListener(OnClearClicked);
+
+                BuildCheckbox(font);
+                BuildTooltip(font);
 
                 foreach (ItemCategory category in ItemCategories.Selectable)
                 {
@@ -318,7 +354,11 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
 
         private void Layout(float width)
         {
-            UiParts.SetTopLeft(inputRect, 0f, 0f, width - ClearButtonWidth - Gap, RowHeight);
+            barWidth = width;
+
+            // One row: search box, then the applied-oils checkbox (a square as tall as the row), then Clear.
+            UiParts.SetTopLeft(inputRect, 0f, 0f, width - ClearButtonWidth - Gap - RowHeight - Gap, RowHeight);
+            UiParts.SetTopLeft(checkboxRect, width - ClearButtonWidth - Gap - RowHeight, 0f, RowHeight, RowHeight);
             UiParts.SetTopLeft(clearRect, width - ClearButtonWidth, 0f, ClearButtonWidth, RowHeight);
 
             int count = categoryButtons.Count;
@@ -338,10 +378,85 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 button.Label.color = selected ? UiTheme.Text : UiTheme.TextMuted;
             }
 
+            if (checkMark != null)
+            {
+                checkMark.SetActive(filter.IncludeAppliedEnchantments);
+            }
+
             if (input != null && input.text != filter.Text)
             {
                 input.SetTextWithoutNotify(filter.Text);
             }
+        }
+
+        private void BuildCheckbox(TMP_FontAsset font)
+        {
+            TextMeshProUGUI label;
+            Button checkbox = UiParts.CreateButton(rootRect, "IncludeAppliedOils", font, texts, out label);
+            label.text = string.Empty;
+            checkboxRect = checkbox.GetComponent<RectTransform>();
+
+            checkMark = new GameObject("Mark", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            RectTransform markRect = checkMark.GetComponent<RectTransform>();
+            markRect.SetParent(checkboxRect, false);
+            markRect.anchorMin = Vector2.zero;
+            markRect.anchorMax = Vector2.one;
+            markRect.offsetMin = new Vector2(CheckMarkInset, CheckMarkInset);
+            markRect.offsetMax = new Vector2(-CheckMarkInset, -CheckMarkInset);
+            Image mark = checkMark.GetComponent<Image>();
+            mark.color = UiTheme.Text;
+            mark.raycastTarget = false;
+
+            checkbox.onClick.AddListener(OnIncludeAppliedClicked);
+            checkbox.gameObject.AddComponent<HoverTip>().Hover = ShowTooltip;
+        }
+
+        private void BuildTooltip(TMP_FontAsset font)
+        {
+            GameObject tooltip = new GameObject("Tooltip", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            tooltipRect = tooltip.GetComponent<RectTransform>();
+            tooltipRect.SetParent(rootRect, false);
+            Image background = tooltip.GetComponent<Image>();
+            background.color = UiTheme.Panel;
+            background.raycastTarget = false;
+
+            tooltipText = UiParts.CreateText(tooltipRect, "Text", font, TooltipFontSize, UiTheme.Text, TextAlignmentOptions.MidlineLeft, texts, TextOverflowModes.Overflow);
+            tooltipText.textWrappingMode = TextWrappingModes.Normal;
+            tooltipText.rectTransform.offsetMin = new Vector2(8f, 4f);
+            tooltipText.rectTransform.offsetMax = new Vector2(-8f, -4f);
+
+            tooltip.SetActive(false);
+        }
+
+        /// <summary>Shows the checkbox's explanation just under it, right-aligned to it.</summary>
+        private void ShowTooltip(bool show)
+        {
+            if (tooltipRect == null)
+            {
+                return;
+            }
+
+            // Measuring needs the current language's font in place.
+            if (!show || fontStale || string.IsNullOrEmpty(tooltipText.text))
+            {
+                tooltipRect.gameObject.SetActive(false);
+                return;
+            }
+
+            Vector2 preferred = tooltipText.GetPreferredValues(tooltipText.text, TooltipMaximumWidth - 16f, 0f);
+            float width = Mathf.Min(TooltipMaximumWidth, preferred.x + 16f);
+            float height = preferred.y + 8f;
+            float right = barWidth - ClearButtonWidth - Gap;
+
+            UiParts.SetTopLeft(tooltipRect, Mathf.Max(0f, right - width), RowHeight + 2f, width, height);
+            tooltipRect.SetAsLastSibling();
+            tooltipRect.gameObject.SetActive(true);
+        }
+
+        private void OnIncludeAppliedClicked()
+        {
+            filter.SetIncludeAppliedEnchantments(!filter.IncludeAppliedEnchantments);
+            UiParts.ClearSelection();
         }
 
         private void OnClearClicked()

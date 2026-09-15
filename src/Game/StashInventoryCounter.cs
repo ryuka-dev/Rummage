@@ -156,7 +156,7 @@ namespace Ryuka.Sulfur.Rummage.Game
                     continue;
                 }
 
-                quantity += Accept(item.itemDefinition, item.quantity, filter);
+                quantity += Record(item.itemDefinition, item.quantity, ItemMatcher.Matches(item, filter));
             }
 
             return quantity;
@@ -183,22 +183,20 @@ namespace Ryuka.Sulfur.Rummage.Game
                     continue;
                 }
 
-                quantity += Accept(data.id.GetAsset(), data.quantity, filter);
+                ItemDefinition definition = data.id.GetAsset();
+                if (definition != null)
+                {
+                    quantity += Record(definition, data.quantity, ItemMatcher.Matches(data, definition, filter));
+                }
             }
 
             return quantity;
         }
 
         /// <summary>The quantity to add for one stack, recording it per item kind when it matches.</summary>
-        private static int Accept(ItemDefinition definition, int stackQuantity, InventoryFilter filter)
+        private static int Record(ItemDefinition definition, int stackQuantity, bool matched)
         {
-            if (definition == null)
-            {
-                return 0;
-            }
-
-            ItemSearchCatalog.Entry entry = ItemSearchCatalog.Get(definition);
-            if (!filter.Accepts(entry.Category, entry.Text))
+            if (definition == null || !matched)
             {
                 return 0;
             }

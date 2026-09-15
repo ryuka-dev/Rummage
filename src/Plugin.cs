@@ -17,7 +17,7 @@ namespace Ryuka.Sulfur.Rummage
     {
         public const string PluginGuid = "ryuka.sulfur.rummage";
         public const string PluginName = "Rummage";
-        public const string PluginVersion = "0.0.5";
+        public const string PluginVersion = "0.0.6";
 
         internal static ManualLogSource Log;
 

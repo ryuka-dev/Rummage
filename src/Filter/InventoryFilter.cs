@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Ryuka.Sulfur.Rummage.Search;
 
 namespace Ryuka.Sulfur.Rummage.Filter
@@ -23,14 +24,41 @@ namespace Ryuka.Sulfur.Rummage.Filter
             get { return !Query.IsEmpty || Category != ItemCategory.All; }
         }
 
+        /// <summary>
+        /// Whether typed text also matches the oils and scrolls applied to an item. A preference, so
+        /// clearing the search keeps it.
+        /// </summary>
+        public bool IncludeAppliedEnchantments { get; private set; }
+
         public bool Accepts(ItemCategory itemCategory, SearchableText text)
+        {
+            return Accepts(itemCategory, text, null);
+        }
+
+        /// <summary>
+        /// The category always applies to the item itself; <paramref name="applied"/> (the texts of
+        /// the enchantments on it) only widen the text match, and only while
+        /// <see cref="IncludeAppliedEnchantments"/> is on.
+        /// </summary>
+        public bool Accepts(ItemCategory itemCategory, SearchableText text, IReadOnlyList<SearchableText> applied)
         {
             if (Category != ItemCategory.All && itemCategory != Category)
             {
                 return false;
             }
 
-            return Query.Matches(text);
+            return Query.Matches(text, IncludeAppliedEnchantments ? applied : null);
+        }
+
+        public void SetIncludeAppliedEnchantments(bool value)
+        {
+            if (value == IncludeAppliedEnchantments)
+            {
+                return;
+            }
+
+            IncludeAppliedEnchantments = value;
+            Changed?.Invoke();
         }
 
         public void SetText(string text)

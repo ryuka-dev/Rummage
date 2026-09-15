@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "مكان ظهور نتائج البحث. BelowSearchBar: أسفل شريط البحث فوق الحقيبة، ويتسع مع القائمة حتى أسفل الشاشة. AboveSearchBar: أعلى شريط البحث في لوحة أقصر قابلة للتمرير."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "ابحث أيضًا عن الأسلحة حسب الزيوت المطبقة عليها"
     }
   ]
 }

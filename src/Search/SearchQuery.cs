@@ -50,19 +50,29 @@ namespace Ryuka.Sulfur.Rummage.Search
         /// <summary>An empty query matches everything.</summary>
         public bool Matches(SearchableText searchable)
         {
-            if (terms.Length == 0)
-            {
-                return true;
-            }
+            return Matches(searchable, null);
+        }
 
-            if (searchable == null)
-            {
-                return false;
-            }
-
+        /// <summary>
+        /// Every term must be found in <paramref name="searchable"/> or in any of
+        /// <paramref name="more"/>, so "shotgun crit" finds a shotgun carrying a crit oil. An empty
+        /// query matches everything.
+        /// </summary>
+        public bool Matches(SearchableText searchable, IReadOnlyList<SearchableText> more)
+        {
             for (int i = 0; i < terms.Length; i++)
             {
-                if (!searchable.Contains(terms[i], latinOnly[i]))
+                bool found = searchable != null && searchable.Contains(terms[i], latinOnly[i]);
+
+                if (!found && more != null)
+                {
+                    for (int j = 0; j < more.Count && !found; j++)
+                    {
+                        found = more[j] != null && more[j].Contains(terms[i], latinOnly[i]);
+                    }
+                }
+
+                if (!found)
                 {
                     return false;
                 }

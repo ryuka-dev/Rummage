@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Var sökresultaten visas. BelowSearchBar: under sökfältet, över ryggsäcken, växer med listan ner till skärmens nederkant. AboveSearchBar: ovanför sökfältet, i en lägre rullbar panel."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Hitta även vapen efter oljorna som lagts på dem"
     }
   ]
 }

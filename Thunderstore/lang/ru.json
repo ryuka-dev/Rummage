@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Где показываются результаты поиска. BelowSearchBar: под строкой поиска поверх рюкзака, растёт вместе со списком до низа экрана. AboveSearchBar: над строкой поиска, в более низкой прокручиваемой панели."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Также находить оружие по нанесённым на него маслам"
     }
   ]
 }

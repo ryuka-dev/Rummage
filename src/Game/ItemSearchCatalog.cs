@@ -33,10 +33,52 @@ namespace Ryuka.Sulfur.Rummage.Game
 
         private static bool indexFailureReported;
 
+        private static readonly Dictionary<EnchantmentDefinition, SearchableText> EnchantmentTexts = new Dictionary<EnchantmentDefinition, SearchableText>();
+
         /// <summary>Drops every entry; the next lookups rebuild them in the current language.</summary>
         public static void Invalidate()
         {
             Entries.Clear();
+            EnchantmentTexts.Clear();
+        }
+
+        /// <summary>
+        /// What an enchantment applied to an item can be found by: the texts of the oil or scroll that
+        /// applied it when the game recorded one (it does when an enchantment is added to an item),
+        /// otherwise the enchantment's own names and effect lines.
+        /// </summary>
+        public static SearchableText GetApplied(EnchantmentDefinition enchantment)
+        {
+            if (enchantment == null)
+            {
+                return null;
+            }
+
+            if (enchantment.ItemThatAppliedThis != null)
+            {
+                return Get(enchantment.ItemThatAppliedThis).Text;
+            }
+
+            SearchableText text;
+            if (!EnchantmentTexts.TryGetValue(enchantment, out text))
+            {
+                List<string> sources = new List<string>();
+                try
+                {
+                    sources.Add(Translate("EnchantmentDefinitions/" + enchantment.name, enchantment.enchantmentName));
+                    sources.Add(enchantment.enchantmentName);
+                    AddModifierTexts(enchantment.modifiersApplied, true, sources);
+                }
+                catch (Exception)
+                {
+                    // Whatever was collected before the failure still counts.
+                }
+
+                text = SearchableText.Create(sources);
+                EnchantmentTexts[enchantment] = text;
+            }
+
+            return text;
         }
 
         public static Entry Get(ItemDefinition item)

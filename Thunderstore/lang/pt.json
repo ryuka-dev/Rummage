@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Onde os resultados aparecem. BelowSearchBar: abaixo da barra de pesquisa, sobre a mochila, crescendo com a lista até a parte inferior da tela. AboveSearchBar: acima da barra de pesquisa, num painel mais baixo com rolagem."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Encontrar também armas pelos óleos aplicados nelas"
     }
   ]
 }

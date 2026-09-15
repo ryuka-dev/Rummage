@@ -101,6 +101,11 @@ namespace Ryuka.Sulfur.Rummage.Filter
 
                 searchBar.Tick(ui);
 
+                if (!searchBar.IsFocused && searchBar.IsVisible && FocusShortcutPressed())
+                {
+                    searchBar.FocusInput();
+                }
+
                 if (!searchBar.IsFocused && GamepadCategoryPressed(manager))
                 {
                     filter.CycleCategory();
@@ -137,6 +142,18 @@ namespace Ryuka.Sulfur.Rummage.Filter
         {
             searchBar.SetSummary(counts);
             worldMarkers.SetCounts(counts);
+        }
+
+        /// <summary>
+        /// Ctrl+F. Neither key has a binding in the game's inventory action map (build 25257948),
+        /// and this is only checked while the search bar is on screen.
+        /// </summary>
+        private static bool FocusShortcutPressed()
+        {
+            Keyboard keyboard = Keyboard.current;
+            return keyboard != null
+                && keyboard.fKey.wasPressedThisFrame
+                && (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
         }
 
         /// <summary>

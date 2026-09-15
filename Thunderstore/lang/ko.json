@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "검색 결과 위치. BelowSearchBar: 검색창 아래, 배낭 위에 겹쳐 표시되며 목록에 맞춰 화면 아래까지 늘어납니다. AboveSearchBar: 검색창 위에 더 낮은 스크롤 패널로 표시됩니다."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "무기에 바른 오일로도 무기를 검색합니다"
     }
   ]
 }

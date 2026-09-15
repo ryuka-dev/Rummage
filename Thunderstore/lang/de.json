@@ -151,6 +151,10 @@
     {
       "key": "entry.Display.ResultsPosition.description",
       "value": "Wo die Suchergebnisse erscheinen. BelowSearchBar: unter der Suchleiste über dem Rucksack, wächst mit der Liste bis zum unteren Bildschirmrand. AboveSearchBar: über der Suchleiste in einem niedrigeren, scrollbaren Feld."
+    },
+    {
+      "key": "search.appliedOils.tooltip",
+      "value": "Waffen auch anhand der aufgetragenen Öle finden"
     }
   ]
 }
