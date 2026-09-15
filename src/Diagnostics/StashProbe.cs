@@ -322,6 +322,9 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
                 }
             }
 
+            DumpUnlockables();
+            DumpStampShop();
+
             if (ui.Stashes != null)
             {
                 StringBuilder registered = new StringBuilder();
@@ -336,6 +339,80 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
                 }
 
                 Info("  InventoryUI.Stashes: " + (registered.Length > 0 ? registered.ToString() : "<empty>"));
+            }
+        }
+
+        /// <summary>
+        /// Every UnlockableStorage in the scene with the service stations under it, so storages that
+        /// are not a PlayerStash (item frames, wall mounts) can be tied to their unlock item too.
+        /// </summary>
+        private static void DumpUnlockables()
+        {
+            UnlockableStorage[] unlocks = UnityEngine.Object.FindObjectsByType<UnlockableStorage>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            Info("  UnlockableStorage objects: " + unlocks.Length);
+
+            foreach (UnlockableStorage unlock in unlocks)
+            {
+                ItemDefinition item = unlock.itemBroughtToChurch;
+                StringBuilder stations = new StringBuilder();
+                foreach (ServiceStation station in unlock.GetComponentsInChildren<ServiceStation>(true))
+                {
+                    if (stations.Length > 0)
+                    {
+                        stations.Append(", ");
+                    }
+
+                    stations.Append(station.GetType().Name).Append(" '").Append(StationIdentifier(station)).Append('\'');
+                }
+
+                Info("  unlock '" + PathOf(unlock.transform) + "': item="
+                    + (item != null ? "'" + item.name + "' ('" + item.LocalizedDisplayName + "')" : "unset")
+                    + ", shown when unlocked=" + unlock.value
+                    + ", stations=[" + stations + "]");
+            }
+        }
+
+        /// <summary>The storage identifier of a station: a PlayerStash's own, or an item frame's frameIdentifier.</summary>
+        private static string StationIdentifier(ServiceStation station)
+        {
+            PlayerStash stash = station as PlayerStash;
+            if (stash != null)
+            {
+                return stash.StashIdentifier;
+            }
+
+            FieldInfo field = station.GetType().GetField("frameIdentifier", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            return field != null ? field.GetValue(station) as string : "<no identifier field>";
+        }
+
+        /// <summary>What the stamp shop sells, with the game's names, as evidence for storage names.</summary>
+        private static void DumpStampShop()
+        {
+            FieldInfo itemsField = typeof(StampPurchaseStation).GetField("purchasableItems", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            if (itemsField == null)
+            {
+                Info("  StampPurchaseStation.purchasableItems was not found; the stamp shop list is not logged.");
+                return;
+            }
+
+            foreach (StampPurchaseStation shop in UnityEngine.Object.FindObjectsByType<StampPurchaseStation>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                List<ItemDefinition> items = itemsField.GetValue(shop) as List<ItemDefinition>;
+                StringBuilder list = new StringBuilder();
+                if (items != null)
+                {
+                    foreach (ItemDefinition item in items)
+                    {
+                        if (list.Length > 0)
+                        {
+                            list.Append(", ");
+                        }
+
+                        list.Append(item != null ? "'" + item.name + "' ('" + item.LocalizedDisplayName + "')" : "<null>");
+                    }
+                }
+
+                Info("  stamp shop '" + PathOf(shop.transform) + "': " + (items != null ? items.Count + " items: " + list : "no item list"));
             }
         }
 

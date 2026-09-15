@@ -2,7 +2,9 @@
 
 ## 0.0.3
 
-* While a search or category is active, a line under the search bar shows where the matching items are, for example `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. Stashes, weapon racks, item frames and wall mounts are all counted, including the ones not currently open.
+* While a search or category is active, a line above the search bar shows where the matching items are, for example `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. Stashes, weapon racks, item frames and wall mounts are all counted, including the ones not currently open.
+* The square button at the end of that line expands a scrollable list of which items each place holds.
+* Storages are named with the game's own translated names (Refrigerator, Chest of Drawers, Weapon Rack and so on).
 * Fixed the search box: typed text and the caret were invisible in Chinese, Japanese and Korean, and Backspace left the box instead of deleting.
 
 ## 0.0.2

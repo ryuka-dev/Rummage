@@ -8,15 +8,30 @@ using Ryuka.Sulfur.Rummage.Stashes;
 
 namespace Ryuka.Sulfur.Rummage.Game
 {
-    /// <summary>How many matching items one place holds.</summary>
+    /// <summary>One kind of matching item in one place.</summary>
+    internal sealed class ItemCount
+    {
+        public ItemCount(string name, int quantity)
+        {
+            Name = name;
+            Quantity = quantity;
+        }
+
+        public string Name { get; }
+
+        public int Quantity { get; }
+    }
+
+    /// <summary>How many matching items one place holds, and which.</summary>
     internal sealed class LocationCount
     {
-        public LocationCount(string identifier, string label, int quantity, bool live)
+        public LocationCount(string identifier, string label, int quantity, bool live, List<ItemCount> items)
         {
             Identifier = identifier;
             Label = label;
             Quantity = quantity;
             Live = live;
+            Items = items;
         }
 
         /// <summary>The stash identifier, or null for the backpack.</summary>
@@ -28,6 +43,9 @@ namespace Ryuka.Sulfur.Rummage.Game
 
         /// <summary>Counted from a live grid rather than from the save. Diagnostics only.</summary>
         public bool Live { get; }
+
+        /// <summary>Matching item kinds, most numerous first.</summary>
+        public List<ItemCount> Items { get; }
     }
 
     /// <summary>
@@ -42,15 +60,17 @@ namespace Ryuka.Sulfur.Rummage.Game
     {
         private static readonly HashSet<InventoryItem> SeenItems = new HashSet<InventoryItem>();
         private static readonly HashSet<string> Identifiers = new HashSet<string>(StringComparer.Ordinal);
+        private static readonly Dictionary<ItemDefinition, int> ItemTotals = new Dictionary<ItemDefinition, int>();
 
         public static List<LocationCount> Count(InventoryUI ui, InventoryFilter filter)
         {
             List<LocationCount> result = new List<LocationCount>();
 
+            ItemTotals.Clear();
             int backpack = CountGrid(ui.PlayerBackpackGrid, filter);
             if (backpack > 0)
             {
-                result.Add(new LocationCount(null, StashLabels.Backpack(), backpack, true));
+                result.Add(new LocationCount(null, StashLabels.Backpack(), backpack, true, TakeItems()));
             }
 
             SulfurSaveState save = SulfurSaveState.active;
@@ -59,6 +79,7 @@ namespace Ryuka.Sulfur.Rummage.Game
             List<KeyValuePair<StashName, LocationCount>> stashes = new List<KeyValuePair<StashName, LocationCount>>();
             foreach (string identifier in Identifiers)
             {
+                ItemTotals.Clear();
                 ItemGrid grid = ui.GetStashItemGrid(identifier);
                 bool live = grid != null && grid.slots != null;
                 int quantity = live ? CountGrid(grid, filter) : CountSaved(save, identifier, filter);
@@ -67,7 +88,7 @@ namespace Ryuka.Sulfur.Rummage.Game
                 {
                     stashes.Add(new KeyValuePair<StashName, LocationCount>(
                         StashNaming.Resolve(identifier),
-                        new LocationCount(identifier, StashLabels.Get(identifier), quantity, live)));
+                        new LocationCount(identifier, StashLabels.Get(identifier), quantity, live, TakeItems())));
                 }
             }
 
@@ -135,11 +156,7 @@ namespace Ryuka.Sulfur.Rummage.Game
                     continue;
                 }
 
-                ItemSearchCatalog.Entry entry = ItemSearchCatalog.Get(item.itemDefinition);
-                if (filter.Accepts(entry.Category, entry.Text))
-                {
-                    quantity += Math.Max(1, item.quantity);
-                }
+                quantity += Accept(item.itemDefinition, item.quantity, filter);
             }
 
             return quantity;
@@ -166,20 +183,49 @@ namespace Ryuka.Sulfur.Rummage.Game
                     continue;
                 }
 
-                ItemDefinition definition = data.id.GetAsset();
-                if (definition == null)
-                {
-                    continue;
-                }
-
-                ItemSearchCatalog.Entry entry = ItemSearchCatalog.Get(definition);
-                if (filter.Accepts(entry.Category, entry.Text))
-                {
-                    quantity += Math.Max(1, data.quantity);
-                }
+                quantity += Accept(data.id.GetAsset(), data.quantity, filter);
             }
 
             return quantity;
+        }
+
+        /// <summary>The quantity to add for one stack, recording it per item kind when it matches.</summary>
+        private static int Accept(ItemDefinition definition, int stackQuantity, InventoryFilter filter)
+        {
+            if (definition == null)
+            {
+                return 0;
+            }
+
+            ItemSearchCatalog.Entry entry = ItemSearchCatalog.Get(definition);
+            if (!filter.Accepts(entry.Category, entry.Text))
+            {
+                return 0;
+            }
+
+            int quantity = Math.Max(1, stackQuantity);
+            int total;
+            ItemTotals.TryGetValue(definition, out total);
+            ItemTotals[definition] = total + quantity;
+            return quantity;
+        }
+
+        private static List<ItemCount> TakeItems()
+        {
+            List<ItemCount> items = new List<ItemCount>(ItemTotals.Count);
+            foreach (KeyValuePair<ItemDefinition, int> pair in ItemTotals)
+            {
+                items.Add(new ItemCount(pair.Key.LocalizedDisplayName, pair.Value));
+            }
+
+            items.Sort((a, b) =>
+            {
+                int byQuantity = b.Quantity.CompareTo(a.Quantity);
+                return byQuantity != 0 ? byQuantity : string.Compare(a.Name, b.Name, StringComparison.CurrentCulture);
+            });
+
+            ItemTotals.Clear();
+            return items;
         }
     }
 }
