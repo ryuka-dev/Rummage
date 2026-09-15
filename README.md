@@ -2,51 +2,29 @@
 
 Search and filter your backpack and stashes by name, oil or effect — and see which stash holds an item.
 
-A BepInEx plugin for SULFUR. GUID `ryuka.sulfur.rummage`.
+A BepInEx plugin for SULFUR. GUID `ryuka.sulfur.rummage`. The player-facing description lives in
+`Thunderstore/README.md`; this file is for building and working on the mod.
 
-## Status
+## Layout
 
-In development (phase 1).
+- `src/Search`, `src/Filter/InventoryFilter.cs`, `src/Stashes`: game-independent logic (query
+  parsing, pinyin, filter state, stash keys and names), covered by the test projects.
+- `src/Game`: reads the game (item index, counts, storage index, Harmony hooks).
+- `src/UserInterface`: search bar, results panel, world labels, the embedded checkbox icon.
+- `src/Localization`: language tracking and Rummage's own strings from `Thunderstore/lang`.
+- `src/Diagnostics`: log-only probes behind the `[Debug]` switches.
 
-- A search bar sits above the backpack whenever the inventory is open. Typing matches an item's
-  name in the current language, its English name, its oil or scroll name, and the effect lines its
-  description shows. Names written in Chinese also match pinyin (`moyou`, `my`).
-  Several words must all match.
-- Category buttons: All, Oils, Scrolls, Weapons, Attachments, Consumables. Clicking the selected
-  one again returns to All. On a gamepad the View/Select button steps through them.
-- Items that do not match are faded, matching items are framed. An open stash (including weapon
-  racks) is filtered the same way as the backpack.
-- While the search box has focus, the inventory's keyboard shortcuts do not fire; Escape leaves the
-  box instead of closing the inventory.
-- The filter stays set until cleared, for the rest of the session. It is not saved.
-- Ctrl+F focuses the search box while the bar is on screen.
-- The square checkbox with the gun icon beside the search box (the icon is faded until ticked;
-  hover for its tooltip; the image is embedded in the DLL) makes weapons match the oils
-  and scrolls applied to them as well. Each word may match either the weapon or one of its oils.
-  The category buttons still apply to the item itself.
-- While a filter is active, a line next to the search bar counts the matches per place, for example
-  `Backpack ×1 · Stash ×2 · Weapon rack 1 ×1`. The square button at its end expands a scrollable
-  list of the matching items in each place. By default it hangs under the search bar over the top
-  of the backpack and grows with the list down to the bottom of the screen; with
-  `ResultsPosition = AboveSearchBar` it sits above the search bar, capped shorter. Stashes whose grid the game has set up (all of them
-  in the church) are counted live; the rest from the save's stash table, which the game refreshes
-  when a stash closes. Item frames and wall mounts count as places too. Storage names use the
-  game's own name for the storage's unlock item, where probe rounds showed the storage carrying
-  that UnlockableStorage (every storage except the main stash, which has none and uses
-  Rummage's own table). An identifier Rummage does not know shows as "Stash #n".
-
-- While a filter is active, every storage in the scene that holds matches gets a floating label
-  above it (for example `Wardrobe ×5`), facing the camera and drawn over walls. A storage that
-  stands in several places (the main stash) is labelled only at the one nearest the player,
-  re-chosen every frame. Counts are refreshed when a level loads, so the labels are right with the
-  inventory closed.
-
-Constraints the design keeps:
+Design constraints:
 
 - Save data is read only. The mod never writes the stash table, never saves a stash and never
   changes an item.
 - Level loot containers and shop inventories are not searched.
 - Purely local UI; nothing is synchronised in multiplayer.
+
+Storages with live grids (every storage in the church) are counted from those grids; the rest from
+the save's stash table, which the game refreshes when a stash closes. Storage names use the game's
+name for each storage's unlock item, a link verified in probe rounds; the main stash has none and
+uses Rummage's own text.
 
 ## Building
 
@@ -54,7 +32,7 @@ Constraints the design keeps:
 2. Build without deploying:
 
    ```
-   dotnet build -t:Restore;Compile -v:m -nologo
+   dotnet build Rummage.csproj -t:Restore;Compile -v:m -nologo
    ```
 
 3. To copy the plugin and language files into a profile, build with
@@ -73,14 +51,14 @@ dotnet run --project Tests/StashSaveKeyTests
 
 | Key | Default | Effect |
 | --- | --- | --- |
-| `ResultsPosition` | `BelowSearchBar` | `BelowSearchBar`: results under the search bar, over the backpack, growing with the list. `AboveSearchBar`: above the search bar, shorter. Applies live. |
+| `ResultsPosition` | `BelowSearchBar` | Results under the search bar over the backpack, growing with the list; or `AboveSearchBar`, shorter. Applies live. |
 | `HideInventoryKeyHints` | `true` | Hides the game's key hints above the backpack, which the search bar covers. Applies live. |
 
-`[Debug]` log switches. They never change what the mod does.
+`[Debug]` log switches, all off by default. They never change what the mod does.
 
-| Key | Default | Effect |
-| --- | --- | --- |
-| `LogStashProbe` | `true` | Stash identifiers, save keys, setup timing and item change counts |
-| `LogEnchantmentCatalog` | `true` | Every oil and enchantment item definition, once per session |
-| `LogSearchFilter` | `true` | Search bar placement, match counts per filter change, world marker index |
-| `LogGameTerms` | `true` | Game localisation terms that could name Rummage's labels, once per session |
+| Key | Effect |
+| --- | --- |
+| `LogStashProbe` | Stash identifiers, save keys, setup timing, unlock items, stamp shop list |
+| `LogEnchantmentCatalog` | Every oil and enchantment item definition, once per session |
+| `LogSearchFilter` | Search bar placement, match counts per filter change, world label index |
+| `LogGameTerms` | Game localisation terms that could name Rummage's labels, once per session |

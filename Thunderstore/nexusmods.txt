@@ -1,0 +1,58 @@
+[font=Arial Black][color=DarkOrange][size=5][b]Rummage[/b][/size][/color][/font]
+
+Search and filter your backpack and stashes by name, oil or effect — and see which stash holds an item.
+
+[color=RoyalBlue][b]Features[/b][/color]
+
+[list]
+[*][b]Search bar[/b] above the backpack whenever the inventory is open. Type an item name in your language or in English, an oil or scroll name, or what the item does ("health", "reload", "crit"). Chinese names also match pinyin, full or as initials. Several words must all match.[/*]
+[*][b]Category buttons[/b]: All, Oils, Scrolls, Weapons, Attachments, Consumables. On a gamepad, the View/Select button cycles them.[/*]
+[*][b]Highlighting[/b]: items that do not match fade out and matches get a frame, in the backpack and in the open stash or weapon rack.[/*]
+[*][b]Where is it?[/b] A line under the search bar counts the matches in the backpack and in every storage, open or not: the stash, wardrobe, refrigerator, weapon racks, wall frames and so on. The square button at its end expands a list of exactly which items each place holds.[/*]
+[*][b]Labels in the church[/b]: storages holding matches show a floating label such as "Wardrobe ×5", visible through walls. When a storage stands in several places, only the nearest one is labelled.[/*]
+[*][b]Oiled weapons[/b]: tick the gun checkbox beside the search box to also find weapons by the oils and scrolls applied to them. Hover it for a reminder.[/*]
+[*][b]Keyboard[/b]: Ctrl+F jumps to the search box. While you type, inventory shortcuts are paused and Escape leaves the box.[/*]
+[*]Storage, consumable and attachment names come from the game's own translations, and Rummage's text is translated into all 14 game languages.[/*]
+[/list]
+[color=RoyalBlue][b]Configuration[/b][/color]
+
+Settings live in [color=#ffff00]BepInEx/config/ryuka.sulfur.rummage.cfg[/color], or in game through SULFUR Config. Both apply without restarting.
+
+[color=DodgerBlue][b]Results Position[/b][/color]
+
+Where the search results sit. [color=#ffff00]BelowSearchBar[/color] hangs them over the top of the backpack and lets the item list grow down the screen. [color=#ffff00]AboveSearchBar[/color] places them above the search bar in a shorter panel.
+
+[code][Display]
+ResultsPosition = BelowSearchBar[/code]
+[color=DodgerBlue][b]Hide Inventory Key Hints[/b][/color]
+
+Hides the game's key hints above the backpack (rotate, use and so on), which the search bar covers.
+
+[code][Display]
+HideInventoryKeyHints = true[/code]
+The [color=#ffff00][Debug][/color] section only writes extra log output for troubleshooting and is off by default.
+
+[color=RoyalBlue][b]Compatibility[/b][/color]
+
+[list]
+[*]Optional: SULFUR Config shows these settings in the game's options, with translated names.[/*]
+[*]Save data is only read, never written.[/*]
+[*]Level loot containers and shop inventories are not searched.[/*]
+[*]Works locally only; nothing is synchronised in multiplayer, and each player searches their own inventory and stashes.[/*]
+[/list]
+[font=Arial Black][color=DarkOrange][size=5][b]Changelog[/b][/size][/color][/font]
+
+[color=RoyalBlue][b]1.0.0[/b][/color]
+
+[list]
+[*]First release.[/*]
+[*]Search bar above the backpack whenever the inventory is open. It matches item names in the game language and in English, oil and scroll names, and what an item's description says it does: effects, healing, buffs, statuses and stats. Chinese names also match pinyin, typed in full or as initials. Several words must all match.[/*]
+[*]Category buttons for oils, scrolls, weapons, attachments and consumables. The gamepad View/Select button cycles them.[/*]
+[*]Items that do not match fade out and matches get a frame, in the backpack and in an open stash or weapon rack.[/*]
+[*]A counts line shows where the matches are, in the backpack and in every storage whether open or not, and expands into a list of the matching items in each place. It sits under the search bar by default, or above it with the Results Position setting.[/*]
+[*]In the church, storages holding matches show a floating label visible through walls. When a storage stands in several places, only the nearest is labelled.[/*]
+[*]A checkbox with a gun icon also finds weapons by the oils and scrolls applied to them.[/*]
+[*]Ctrl+F jumps to the search box. While typing, the inventory shortcuts are paused and Escape leaves the box.[/*]
+[*]The game's key hints above the backpack, which the search bar covers, are hidden; the Hide Inventory Key Hints setting brings them back.[/*]
+[*]Storage, consumable and attachment names use the game's own translations. Rummage's own text is available in all 14 game languages.[/*]
+[/list]

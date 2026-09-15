@@ -15,25 +15,25 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
             LogStashProbe = config.Bind(
                 Section,
                 "LogStashProbe",
-                true,
+                false,
                 "Writes stash identifiers, save keys, setup timing and item change counts to the BepInEx log. Does not change how the mod works.");
 
             LogEnchantmentCatalog = config.Bind(
                 Section,
                 "LogEnchantmentCatalog",
-                true,
+                false,
                 "Writes every oil and other enchantment item the game defines to the BepInEx log once per session. Does not change how the mod works.");
 
             LogSearchFilter = config.Bind(
                 Section,
                 "LogSearchFilter",
-                true,
+                false,
                 "Writes where the search bar is placed and how many items match each filter change to the BepInEx log. Does not change how the mod works.");
 
             LogGameTerms = config.Bind(
                 Section,
                 "LogGameTerms",
-                true,
+                false,
                 "Once per session, writes the game's localization terms that could name Rummage's buttons and labels to the BepInEx log. Does not change how the mod works.");
         }
 
