@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Oyunun tanımladığı tüm yağları ve diğer büyü eşyalarını oturum başına bir kez BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Arama filtresini günlüğe yaz"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Arama çubuğunun konumunu ve her filtre değişikliğinde eşleşen eşya sayısını BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Ad, yağ veya etki ara"
+    },
+    {
+      "key": "search.clear",
+      "value": "Temizle"
+    },
+    {
+      "key": "category.all",
+      "value": "Tümü"
+    },
+    {
+      "key": "category.oils",
+      "value": "Yağlar"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Parşömenler"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Silahlar"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Eklentiler"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Sarf"
     }
   ]
 }

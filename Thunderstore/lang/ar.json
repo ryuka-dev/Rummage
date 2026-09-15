@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "يكتب جميع الزيوت وأغراض التعاويذ الأخرى التي تعرّفها اللعبة في سجل BepInEx مرة واحدة في كل جلسة. لا يغيّر طريقة عمل التعديل."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "تسجيل مرشح البحث"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "يكتب موضع شريط البحث وعدد الأغراض المطابقة عند كل تغيير في المرشح في سجل BepInEx. لا يغيّر طريقة عمل التعديل."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "ابحث بالاسم أو الزيت أو التأثير"
+    },
+    {
+      "key": "search.clear",
+      "value": "مسح"
+    },
+    {
+      "key": "category.all",
+      "value": "الكل"
+    },
+    {
+      "key": "category.oils",
+      "value": "الزيوت"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "اللفائف"
+    },
+    {
+      "key": "category.weapons",
+      "value": "الأسلحة"
+    },
+    {
+      "key": "category.attachments",
+      "value": "الملحقات"
+    },
+    {
+      "key": "category.consumables",
+      "value": "المستهلكات"
     }
   ]
 }

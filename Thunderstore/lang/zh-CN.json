@@ -6,7 +6,7 @@
     },
     {
       "key": "plugin.description",
-      "value": "按名称、油或效果搜索和筛选背包与箱子，并查看物品存放在哪个箱子里。"
+      "value": "按名称、魔油或效果搜索和筛选背包与箱子，并查看物品存放在哪个箱子里。"
     },
     {
       "key": "section.Debug",
@@ -26,7 +26,47 @@
     },
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
-      "value": "每次游戏会话将游戏定义的所有油和其他附魔物品写入 BepInEx 日志一次。不影响 mod 的功能。"
+      "value": "每次游戏会话将游戏定义的所有魔油和其他附魔物品写入 BepInEx 日志一次。不影响 mod 的功能。"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "记录搜索筛选"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "将搜索栏的位置和每次筛选变化时匹配的物品数写入 BepInEx 日志。不影响 mod 的功能。"
+    },
+    {
+      "key": "search.placeholder",
+      "value": "搜索名称、魔油或效果"
+    },
+    {
+      "key": "search.clear",
+      "value": "清除"
+    },
+    {
+      "key": "category.all",
+      "value": "全部"
+    },
+    {
+      "key": "category.oils",
+      "value": "魔油"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "卷轴"
+    },
+    {
+      "key": "category.weapons",
+      "value": "武器"
+    },
+    {
+      "key": "category.attachments",
+      "value": "配件"
+    },
+    {
+      "key": "category.consumables",
+      "value": "消耗品"
     }
   ]
 }

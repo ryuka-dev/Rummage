@@ -1,9 +1,13 @@
 using System;
+using System.IO;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using Ryuka.Sulfur.Rummage.Diagnostics;
+using Ryuka.Sulfur.Rummage.Filter;
 using Ryuka.Sulfur.Rummage.Game;
+using Ryuka.Sulfur.Rummage.InputGuard;
+using Ryuka.Sulfur.Rummage.Localization;
 
 namespace Ryuka.Sulfur.Rummage
 {
@@ -12,12 +16,14 @@ namespace Ryuka.Sulfur.Rummage
     {
         public const string PluginGuid = "ryuka.sulfur.rummage";
         public const string PluginName = "Rummage";
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "0.0.2";
 
         internal static ManualLogSource Log;
 
         private Harmony harmony;
         private PlayerSpawnSource playerSpawnSource;
+        private LanguageWatcher languageWatcher;
+        private RummageController controller;
 
         private void Awake()
         {
@@ -31,8 +37,17 @@ namespace Ryuka.Sulfur.Rummage
             playerSpawnSource.PlayerSpawned += StashProbe.OnPlayerSpawned;
             playerSpawnSource.PlayerSpawned += EnchantmentCatalogProbe.OnPlayerSpawned;
 
+            controller = new RummageController(diagnostics);
+            InventoryStatePatch.StateSet += controller.OnInventoryStateSet;
+
+            languageWatcher = new LanguageWatcher(Path.GetDirectoryName(Info.Location));
+            languageWatcher.LanguageChanged += controller.OnLanguageChanged;
+
             harmony = new Harmony(PluginGuid);
             int failed = 0;
+            failed += Patch(typeof(InventoryStatePatch), "search bar and item filter");
+            failed += Patch(typeof(InventoryKeyGuardPatch), "typing guard for inventory keys");
+            failed += Patch(typeof(InventoryCancelGuardPatch), "typing guard for the close inventory keys");
             failed += Patch(typeof(PlayerStashDoSetupProbePatch), "stash setup probe");
             failed += Patch(typeof(PlayerStashEnterProbePatch), "stash open probe");
             failed += Patch(typeof(PlayerStashExitProbePatch), "stash close probe");
@@ -44,15 +59,25 @@ namespace Ryuka.Sulfur.Rummage
         private void Update()
         {
             playerSpawnSource?.Tick();
+            languageWatcher?.Tick();
+            controller?.Tick();
         }
 
         private void OnDestroy()
         {
-            if (playerSpawnSource != null)
+            if (controller != null)
             {
-                playerSpawnSource.Dispose();
-                playerSpawnSource = null;
+                InventoryStatePatch.StateSet -= controller.OnInventoryStateSet;
             }
+
+            languageWatcher?.Dispose();
+            languageWatcher = null;
+
+            playerSpawnSource?.Dispose();
+            playerSpawnSource = null;
+
+            controller?.Dispose();
+            controller = null;
 
             StashProbe.Shutdown();
 

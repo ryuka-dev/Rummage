@@ -7,7 +7,7 @@
     <LangVersion>9.0</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Product>Rummage</Product>
     <Authors>Ryuka</Authors>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -20,12 +20,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- The test harness is a separate project that links the game-independent sources. -->
+    <!-- The test harnesses are separate projects that link the game-independent sources. -->
     <Compile Remove="Tests/**" />
     <None Remove="Tests/**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="src\Search\PinyinTable.bin">
+      <LogicalName>Ryuka.Sulfur.Rummage.Search.PinyinTable.bin</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="0Harmony">
       <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
       <Private>false</Private>
@@ -38,12 +45,36 @@
       <HintPath>$(SulfurManagedDir)\PerfectRandom.Sulfur.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="I2AsmDef">
+      <HintPath>$(SulfurManagedDir)\I2AsmDef.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>$(SulfurManagedDir)\Unity.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(SulfurManagedDir)\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(SulfurManagedDir)\UnityEngine.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(SulfurManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(SulfurManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(SulfurManagedDir)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(SulfurManagedDir)\UnityEngine.UIModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>

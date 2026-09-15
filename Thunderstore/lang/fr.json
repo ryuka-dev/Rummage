@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Écrit une fois par session toutes les huiles et autres objets d'enchantement définis par le jeu dans le journal BepInEx. Ne modifie pas le fonctionnement du mod."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Journaliser le filtre de recherche"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Écrit la position de la barre de recherche et le nombre d'objets correspondants à chaque changement de filtre dans le journal BepInEx. Ne modifie pas le fonctionnement du mod."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Rechercher un nom, une huile ou un effet"
+    },
+    {
+      "key": "search.clear",
+      "value": "Effacer"
+    },
+    {
+      "key": "category.all",
+      "value": "Tout"
+    },
+    {
+      "key": "category.oils",
+      "value": "Huiles"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Parchemins"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Armes"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Accessoires"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Consommables"
     }
   ]
 }

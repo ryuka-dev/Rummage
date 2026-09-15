@@ -6,14 +6,22 @@ A BepInEx plugin for SULFUR. GUID `ryuka.sulfur.rummage`.
 
 ## Status
 
-Early development. The current build (phase 0) adds no gameplay-visible features yet: it loads,
-and writes diagnostic logs about how the game names, sets up and saves its stashes and which items
-count as enchantments.
+In development (phase 1).
 
-Planned phases:
+- A search bar sits above the backpack whenever the inventory is open. Typing matches an item's
+  name in the current language, its English name, its oil or scroll name, and the effect lines its
+  description shows. Names written in Chinese also match pinyin (`moyou`, `my`).
+  Several words must all match.
+- Category buttons: All, Oils, Scrolls, Weapons, Attachments, Consumables. Clicking the selected
+  one again returns to All. On a gamepad the View/Select button steps through them.
+- Items that do not match are faded, matching items are framed. An open stash (including weapon
+  racks) is filtered the same way as the backpack.
+- While the search box has focus, the inventory's keyboard shortcuts do not fire; Escape leaves the
+  box instead of closing the inventory.
+- The filter stays set until cleared, for the rest of the session. It is not saved.
 
-1. Search box in the inventory (name, localised name, pinyin) plus category buttons such as
-   "oils only". Non-matching items are dimmed; the open stash is filtered the same way.
+Planned:
+
 2. Per-stash counts for the current search, for example `Backpack ×1 · Stash ×2 · Weapon rack ×1`.
 3. Later: world markers on the matching stashes in the church.
 
@@ -39,6 +47,7 @@ Constraints the design keeps:
 Tests for the game-independent code:
 
 ```
+dotnet run --project Tests/SearchTests
 dotnet run --project Tests/StashSaveKeyTests
 ```
 
@@ -50,3 +59,4 @@ Only log switches, under `[Debug]`. They never change what the mod does.
 | --- | --- | --- |
 | `LogStashProbe` | `true` | Stash identifiers, save keys, setup timing and item change counts |
 | `LogEnchantmentCatalog` | `true` | Every oil and enchantment item definition, once per session |
+| `LogSearchFilter` | `true` | Search bar placement and match counts for each filter change |

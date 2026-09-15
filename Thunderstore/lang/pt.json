@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Escreve uma vez por sessão no log do BepInEx todos os óleos e demais itens de encantamento definidos pelo jogo. Não altera o funcionamento do mod."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Registrar filtro de pesquisa"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Escreve no log do BepInEx a posição da barra de pesquisa e quantos itens correspondem a cada mudança de filtro. Não altera o funcionamento do mod."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Pesquisar nome, óleo ou efeito"
+    },
+    {
+      "key": "search.clear",
+      "value": "Limpar"
+    },
+    {
+      "key": "category.all",
+      "value": "Tudo"
+    },
+    {
+      "key": "category.oils",
+      "value": "Óleos"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Pergaminhos"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Armas"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Acessórios"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Consumíveis"
     }
   ]
 }

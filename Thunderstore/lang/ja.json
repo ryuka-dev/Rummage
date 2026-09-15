@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "ゲームで定義されたすべてのオイルとその他のエンチャントアイテムを、セッションごとに1回BepInExログへ出力します。MODの動作には影響しません。"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "検索フィルターをログ出力"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "検索バーの配置と、フィルター変更ごとの一致アイテム数をBepInExログへ出力します。MODの動作には影響しません。"
+    },
+    {
+      "key": "search.placeholder",
+      "value": "名前・オイル・効果で検索"
+    },
+    {
+      "key": "search.clear",
+      "value": "クリア"
+    },
+    {
+      "key": "category.all",
+      "value": "すべて"
+    },
+    {
+      "key": "category.oils",
+      "value": "オイル"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "巻物"
+    },
+    {
+      "key": "category.weapons",
+      "value": "武器"
+    },
+    {
+      "key": "category.attachments",
+      "value": "アタッチメント"
+    },
+    {
+      "key": "category.consumables",
+      "value": "消耗品"
     }
   ]
 }

@@ -23,7 +23,15 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
                 "LogEnchantmentCatalog",
                 true,
                 "Writes every oil and other enchantment item the game defines to the BepInEx log once per session. Does not change how the mod works.");
+
+            LogSearchFilter = config.Bind(
+                Section,
+                "LogSearchFilter",
+                true,
+                "Writes where the search bar is placed and how many items match each filter change to the BepInEx log. Does not change how the mod works.");
         }
+
+        public ConfigEntry<bool> LogSearchFilter { get; }
 
         public ConfigEntry<bool> LogStashProbe { get; }
 

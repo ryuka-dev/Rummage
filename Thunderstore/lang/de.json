@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Schreibt einmal pro Sitzung alle Öle und anderen Verzauberungsgegenstände des Spiels in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Suchfilter protokollieren"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Schreibt die Position der Suchleiste und die Anzahl passender Gegenstände bei jeder Filteränderung in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Name, Öl oder Effekt suchen"
+    },
+    {
+      "key": "search.clear",
+      "value": "Leeren"
+    },
+    {
+      "key": "category.all",
+      "value": "Alle"
+    },
+    {
+      "key": "category.oils",
+      "value": "Öle"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Schriftrollen"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Waffen"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Aufsätze"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Verbrauchsgüter"
     }
   ]
 }

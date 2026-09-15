@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Escribe una vez por sesión en el registro de BepInEx todos los aceites y demás objetos de encantamiento que define el juego. No cambia el funcionamiento del mod."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Registrar filtro de búsqueda"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Escribe en el registro de BepInEx la posición de la barra de búsqueda y cuántos objetos coinciden en cada cambio de filtro. No cambia el funcionamiento del mod."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Buscar nombre, aceite o efecto"
+    },
+    {
+      "key": "search.clear",
+      "value": "Borrar"
+    },
+    {
+      "key": "category.all",
+      "value": "Todo"
+    },
+    {
+      "key": "category.oils",
+      "value": "Aceites"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Pergaminos"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Armas"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Accesorios"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Consumibles"
     }
   ]
 }

@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Один раз за сеанс записывает в лог BepInEx все масла и другие предметы зачарования, определённые в игре. Не влияет на работу мода."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Логировать фильтр поиска"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Записывает в лог BepInEx положение строки поиска и число подходящих предметов при каждом изменении фильтра. Не влияет на работу мода."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Поиск по названию, маслу или эффекту"
+    },
+    {
+      "key": "search.clear",
+      "value": "Сброс"
+    },
+    {
+      "key": "category.all",
+      "value": "Все"
+    },
+    {
+      "key": "category.oils",
+      "value": "Масла"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Свитки"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Оружие"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Модули"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Расходники"
     }
   ]
 }

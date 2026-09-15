@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Skriver en gång per session alla oljor och andra förtrollningsföremål som spelet definierar till BepInEx-loggen. Påverkar inte hur moddet fungerar."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Logga sökfilter"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Skriver sökfältets placering och antalet matchande föremål vid varje filterändring till BepInEx-loggen. Påverkar inte hur moddet fungerar."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Sök namn, olja eller effekt"
+    },
+    {
+      "key": "search.clear",
+      "value": "Rensa"
+    },
+    {
+      "key": "category.all",
+      "value": "Alla"
+    },
+    {
+      "key": "category.oils",
+      "value": "Oljor"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Skriftrullar"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Vapen"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Tillbehör"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Förbrukning"
     }
   ]
 }

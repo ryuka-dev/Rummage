@@ -4,7 +4,14 @@ Search and filter your backpack and stashes by name, oil or effect — and see w
 
 ## Status
 
-In development. This build does not add visible features yet.
+In development.
+
+## Features
+
+- Search bar above the backpack: matches item names (current language and English), oil and scroll names, and effect text. Chinese names also match pinyin.
+- Category buttons: All, Oils, Scrolls, Weapons, Attachments, Consumables. On a gamepad, the View/Select button cycles them.
+- Non-matching items fade out and matches get a frame, in the backpack and in the open stash.
+- Inventory shortcuts are paused while you type; Escape leaves the search box.
 
 ## Notes
 

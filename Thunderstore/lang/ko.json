@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "게임에 정의된 모든 오일과 기타 인챈트 아이템을 세션마다 한 번 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "검색 필터 로그 기록"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "검색창 위치와 필터가 바뀔 때마다 일치하는 아이템 수를 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "이름, 오일, 효과 검색"
+    },
+    {
+      "key": "search.clear",
+      "value": "지우기"
+    },
+    {
+      "key": "category.all",
+      "value": "전체"
+    },
+    {
+      "key": "category.oils",
+      "value": "오일"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "두루마리"
+    },
+    {
+      "key": "category.weapons",
+      "value": "무기"
+    },
+    {
+      "key": "category.attachments",
+      "value": "부착물"
+    },
+    {
+      "key": "category.consumables",
+      "value": "소모품"
     }
   ]
 }

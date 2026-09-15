@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Raz na sesję zapisuje do logu BepInEx wszystkie oleje i inne przedmioty zaklinające zdefiniowane w grze. Nie zmienia działania moda."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Loguj filtr wyszukiwania"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Zapisuje do logu BepInEx położenie paska wyszukiwania i liczbę pasujących przedmiotów przy każdej zmianie filtra. Nie zmienia działania moda."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Szukaj nazwy, oleju lub efektu"
+    },
+    {
+      "key": "search.clear",
+      "value": "Wyczyść"
+    },
+    {
+      "key": "category.all",
+      "value": "Wszystko"
+    },
+    {
+      "key": "category.oils",
+      "value": "Oleje"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Zwoje"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Broń"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Dodatki"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Zużywalne"
     }
   ]
 }

@@ -27,6 +27,46 @@
     {
       "key": "entry.Debug.LogEnchantmentCatalog.description",
       "value": "Writes every oil and other enchantment item the game defines to the BepInEx log once per session. Does not change how the mod works."
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.name",
+      "value": "Log Search Filter"
+    },
+    {
+      "key": "entry.Debug.LogSearchFilter.description",
+      "value": "Writes where the search bar is placed and how many items match each filter change to the BepInEx log. Does not change how the mod works."
+    },
+    {
+      "key": "search.placeholder",
+      "value": "Search name, oil or effect"
+    },
+    {
+      "key": "search.clear",
+      "value": "Clear"
+    },
+    {
+      "key": "category.all",
+      "value": "All"
+    },
+    {
+      "key": "category.oils",
+      "value": "Oils"
+    },
+    {
+      "key": "category.scrolls",
+      "value": "Scrolls"
+    },
+    {
+      "key": "category.weapons",
+      "value": "Weapons"
+    },
+    {
+      "key": "category.attachments",
+      "value": "Attachments"
+    },
+    {
+      "key": "category.consumables",
+      "value": "Consumables"
     }
   ]
 }
