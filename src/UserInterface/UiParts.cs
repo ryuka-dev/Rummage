@@ -15,6 +15,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         public static readonly Color ButtonSelected = new Color(0.29f, 0.19f, 0.07f, 0.95f);
         public static readonly Color Text = new Color(0.96f, 0.77f, 0.42f, 1f);
         public static readonly Color TextMuted = new Color(0.72f, 0.52f, 0.21f, 0.9f);
+        public static readonly Color CheckboxFilled = new Color(0.9f, 0.63f, 0.18f, 1f);
 
         public const string TextHex = "#F4C46A";
     }

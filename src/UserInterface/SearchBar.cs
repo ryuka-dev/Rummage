@@ -31,7 +31,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float Gap = 4f;
         private const float MarginAboveGrid = 6f;
         private const float ClearButtonWidth = 72f;
-        private const float CheckMarkInset = 7f;
+        private const float CheckboxIconInset = 3f;
+        private const float CheckboxFallbackInset = 7f;
+        private const float CheckboxIconOffAlpha = 0.45f;
         private const float TooltipMaximumWidth = 280f;
         private const float TooltipFontSize = 14f;
         private const float MinimumWidth = 360f;
@@ -54,7 +56,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private TextMeshProUGUI placeholder;
         private TextMeshProUGUI clearLabel;
         private RectTransform checkboxRect;
-        private GameObject checkMark;
+        private Image checkboxBackground;
+        private Image checkboxIcon;
         private RectTransform tooltipRect;
         private TextMeshProUGUI tooltipText;
         private float barWidth;
@@ -378,9 +381,22 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 button.Label.color = selected ? UiTheme.Text : UiTheme.TextMuted;
             }
 
-            if (checkMark != null)
+            if (checkboxIcon != null)
             {
-                checkMark.SetActive(filter.IncludeAppliedEnchantments);
+                // Unticked: a faded gun on the plain button. Ticked: a solid gun on a filled amber
+                // square, so the grey icon stands out clearly.
+                bool ticked = filter.IncludeAppliedEnchantments;
+                checkboxBackground.color = ticked ? UiTheme.CheckboxFilled : UiTheme.Button;
+
+                if (checkboxIcon.sprite != null)
+                {
+                    checkboxIcon.color = new Color(1f, 1f, 1f, ticked ? 1f : CheckboxIconOffAlpha);
+                }
+                else
+                {
+                    // Without the icon, the filled square alone shows the ticked state.
+                    checkboxIcon.enabled = false;
+                }
             }
 
             if (input != null && input.text != filter.Text)
@@ -395,17 +411,25 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             Button checkbox = UiParts.CreateButton(rootRect, "IncludeAppliedOils", font, texts, out label);
             label.text = string.Empty;
             checkboxRect = checkbox.GetComponent<RectTransform>();
+            checkboxBackground = checkbox.GetComponent<Image>();
 
-            checkMark = new GameObject("Mark", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            RectTransform markRect = checkMark.GetComponent<RectTransform>();
-            markRect.SetParent(checkboxRect, false);
-            markRect.anchorMin = Vector2.zero;
-            markRect.anchorMax = Vector2.one;
-            markRect.offsetMin = new Vector2(CheckMarkInset, CheckMarkInset);
-            markRect.offsetMax = new Vector2(-CheckMarkInset, -CheckMarkInset);
-            Image mark = checkMark.GetComponent<Image>();
-            mark.color = UiTheme.Text;
-            mark.raycastTarget = false;
+            // The gun icon, scaled to fit the square and never rotated. Should it fail to load, a
+            // plain filled square marks the ticked state instead.
+            Sprite gun = UiIcons.AppliedOilsGun;
+            float inset = gun != null ? CheckboxIconInset : CheckboxFallbackInset;
+
+            GameObject icon = new GameObject("Icon", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            RectTransform iconRect = icon.GetComponent<RectTransform>();
+            iconRect.SetParent(checkboxRect, false);
+            iconRect.anchorMin = Vector2.zero;
+            iconRect.anchorMax = Vector2.one;
+            iconRect.offsetMin = new Vector2(inset, inset);
+            iconRect.offsetMax = new Vector2(-inset, -inset);
+
+            checkboxIcon = icon.GetComponent<Image>();
+            checkboxIcon.sprite = gun;
+            checkboxIcon.preserveAspect = true;
+            checkboxIcon.raycastTarget = false;
 
             checkbox.onClick.AddListener(OnIncludeAppliedClicked);
             checkbox.gameObject.AddComponent<HoverTip>().Hover = ShowTooltip;

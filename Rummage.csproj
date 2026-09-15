@@ -29,6 +29,9 @@
     <EmbeddedResource Include="src\Search\PinyinTable.bin">
       <LogicalName>Ryuka.Sulfur.Rummage.Search.PinyinTable.bin</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\UserInterface\Icons\AppliedOilsGun.png">
+      <LogicalName>Ryuka.Sulfur.Rummage.UserInterface.Icons.AppliedOilsGun.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

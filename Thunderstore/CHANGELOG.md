@@ -3,7 +3,7 @@
 ## 0.0.6
 
 * Ctrl+F puts the caret in the search box while it is on screen.
-* New checkbox next to the search box: when ticked, weapons are also found by the oils and scrolls applied to them, in the backpack, open stashes, the counts and the world labels. Words may split between the weapon and its oil ("shotgun crit"). Hover it for a short explanation.
+* New checkbox with a gun icon next to the search box (the icon lights up when ticked): when ticked, weapons are also found by the oils and scrolls applied to them, in the backpack, open stashes, the counts and the world labels. Words may split between the weapon and its oil ("shotgun crit"). Hover it for a short explanation.
 
 ## 0.0.5
 

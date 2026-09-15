@@ -20,7 +20,8 @@ In development (phase 1).
   box instead of closing the inventory.
 - The filter stays set until cleared, for the rest of the session. It is not saved.
 - Ctrl+F focuses the search box while the bar is on screen.
-- The square checkbox beside the search box (hover for its tooltip) makes weapons match the oils
+- The square checkbox with the gun icon beside the search box (the icon is faded until ticked;
+  hover for its tooltip; the image is embedded in the DLL) makes weapons match the oils
   and scrolls applied to them as well. Each word may match either the weapon or one of its oils.
   The category buttons still apply to the item itself.
 - While a filter is active, a line next to the search bar counts the matches per place, for example
