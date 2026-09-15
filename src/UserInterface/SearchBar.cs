@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.Items;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
 using Ryuka.Sulfur.Rummage.Diagnostics;
@@ -95,7 +96,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             if (fontStale)
             {
                 fontStale = false;
-                ApplyFont(SampleFont(ui));
+                TMP_FontAsset font = SampleFont(ui);
+                ApplyFont(font);
+                LogFont(font);
             }
 
             Place(gridRect);
@@ -185,6 +188,8 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 {
                     RummagePlugin.Log.LogWarning("No game font found to sample for the search bar; its text uses the TextMeshPro default font and may not render.");
                 }
+
+                LogFont(font);
 
                 input = CreateInput(rootRect, font);
                 inputRect = input.GetComponent<RectTransform>();
@@ -342,13 +347,37 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         }
 
         /// <summary>
-        /// The game swaps its font asset per language; an inventory text it manages carries the
-        /// one for the current language.
+        /// The game's font for the current language, from the same per-language cache its
+        /// FontLocalizer components apply (I2 term "Font/&lt;style&gt;"). A font sampled from an
+        /// arbitrary inventory text is not enough: some keep a Latin-only font in every language.
         /// </summary>
         private static TMP_FontAsset SampleFont(InventoryUI ui)
         {
+            AsyncAssetLoading loading = StaticInstance<AsyncAssetLoading>.Instance;
+            TMP_FontAsset[] cache = loading != null ? loading.fontCache : null;
+            int index = (int)PerfectRandom.Sulfur.Core.FontStyle.RoundRegular;
+
+            if (cache != null && index < cache.Length && cache[index] == null)
+            {
+                FontLocalizer.LoadFontCache();
+            }
+
+            TMP_FontAsset font = cache != null && index < cache.Length ? cache[index] : null;
+            if (font != null)
+            {
+                return font;
+            }
+
             TextMeshProUGUI sample = ui.sacrificeFeedbackText;
             return sample != null ? sample.font : null;
+        }
+
+        private void LogFont(TMP_FontAsset font)
+        {
+            if (diagnostics.LogSearchFilter.Value)
+            {
+                RummagePlugin.Log.LogInfo("[SearchBar] font: " + (font != null ? font.name : "<none>"));
+            }
         }
 
         private void ApplyFont(TMP_FontAsset font)
