@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Truhe #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Spielbegriffe protokollieren"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Schreibt einmal pro Sitzung die Lokalisierungsbegriffe des Spiels, die Rummages Schaltflächen und Beschriftungen benennen könnten, in das BepInEx-Log. Ändert nichts an der Funktion der Mod."
     }
   ]
 }

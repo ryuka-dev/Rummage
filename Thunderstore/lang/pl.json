@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Skrytka #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Loguj terminy gry"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Raz na sesję zapisuje do logu BepInEx terminy lokalizacji gry, które mogą nazwać przyciski i etykiety Rummage. Nie zmienia działania moda."
     }
   ]
 }

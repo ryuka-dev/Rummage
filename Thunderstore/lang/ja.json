@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "収納箱 #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "ゲーム用語をログ出力"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "セッションごとに1回、Rummageのボタンやラベルに使えそうなゲームのローカライズ用語をBepInExログへ出力します。MODの動作には影響しません。"
     }
   ]
 }

@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Förråd #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Logga speltermer"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Skriver en gång per session spelets lokaliseringstermer som kan namnge Rummages knappar och etiketter till BepInEx-loggen. Påverkar inte hur moddet fungerar."
     }
   ]
 }

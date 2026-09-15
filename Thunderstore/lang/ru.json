@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Хранилище #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Логировать игровые термины"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Один раз за сеанс записывает в лог BepInEx игровые термины локализации, которые могут подойти для кнопок и подписей Rummage. Не влияет на работу мода."
     }
   ]
 }

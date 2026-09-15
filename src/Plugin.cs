@@ -16,7 +16,7 @@ namespace Ryuka.Sulfur.Rummage
     {
         public const string PluginGuid = "ryuka.sulfur.rummage";
         public const string PluginName = "Rummage";
-        public const string PluginVersion = "0.0.3";
+        public const string PluginVersion = "0.0.4";
 
         internal static ManualLogSource Log;
 
@@ -32,20 +32,23 @@ namespace Ryuka.Sulfur.Rummage
             DiagnosticsConfig diagnostics = new DiagnosticsConfig(Config);
             StashProbe.Initialize(diagnostics);
             EnchantmentCatalogProbe.Initialize(diagnostics);
-
-            playerSpawnSource = new PlayerSpawnSource();
-            playerSpawnSource.PlayerSpawned += StashProbe.OnPlayerSpawned;
-            playerSpawnSource.PlayerSpawned += EnchantmentCatalogProbe.OnPlayerSpawned;
+            GameTermProbe.Initialize(diagnostics);
 
             controller = new RummageController(diagnostics);
             InventoryStatePatch.StateSet += controller.OnInventoryStateSet;
+            InventoryStatePatch.StateSet += GameTermProbe.OnInventoryStateSet;
+
+            playerSpawnSource = new PlayerSpawnSource();
+            playerSpawnSource.PlayerSpawned += controller.OnPlayerSpawned;
+            playerSpawnSource.PlayerSpawned += StashProbe.OnPlayerSpawned;
+            playerSpawnSource.PlayerSpawned += EnchantmentCatalogProbe.OnPlayerSpawned;
 
             languageWatcher = new LanguageWatcher(Path.GetDirectoryName(Info.Location));
             languageWatcher.LanguageChanged += controller.OnLanguageChanged;
 
             harmony = new Harmony(PluginGuid);
             int failed = 0;
-            failed += Patch(typeof(InventoryStatePatch), "search bar and item filter");
+            failed += Patch(typeof(InventoryStatePatch), "search bar, item filter and world markers");
             failed += Patch(typeof(InventoryKeyGuardPatch), "typing guard for inventory keys");
             failed += Patch(typeof(InventoryCancelGuardPatch), "typing guard for the close inventory keys");
             failed += Patch(typeof(PlayerStashDoSetupProbePatch), "stash setup probe");
@@ -63,12 +66,20 @@ namespace Ryuka.Sulfur.Rummage
             controller?.Tick();
         }
 
+        private void LateUpdate()
+        {
+            // After the camera has moved this frame, so world markers face where it is now.
+            controller?.LateTick();
+        }
+
         private void OnDestroy()
         {
             if (controller != null)
             {
                 InventoryStatePatch.StateSet -= controller.OnInventoryStateSet;
             }
+
+            InventoryStatePatch.StateSet -= GameTermProbe.OnInventoryStateSet;
 
             languageWatcher?.Dispose();
             languageWatcher = null;

@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "الخزانة #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "تسجيل مصطلحات اللعبة"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "يكتب مرة واحدة في كل جلسة مصطلحات الترجمة في اللعبة التي قد تسمّي أزرار Rummage وتسمياتها في سجل BepInEx. لا يغيّر طريقة عمل التعديل."
     }
   ]
 }

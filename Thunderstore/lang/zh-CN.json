@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "箱子 #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "记录游戏词条"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "每次游戏会话一次，把可能用于 Rummage 按钮和标签名称的游戏本地化词条写入 BepInEx 日志。不影响 mod 的功能。"
     }
   ]
 }

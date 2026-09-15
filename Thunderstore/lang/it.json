@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Deposito #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Registra termini del gioco"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Una volta per sessione, scrive nel log di BepInEx i termini di localizzazione del gioco che potrebbero dare il nome a pulsanti ed etichette di Rummage. Non cambia il funzionamento della mod."
     }
   ]
 }

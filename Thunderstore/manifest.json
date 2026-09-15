@@ -1,6 +1,6 @@
 {
   "name": "Rummage",
-  "version_number": "0.0.3",
+  "version_number": "0.0.4",
   "website_url": "https://github.com/ryuka-dev/Rummage",
   "description": "Search and filter your backpack and stashes by name, oil or effect — and see which stash holds an item.",
   "dependencies": [

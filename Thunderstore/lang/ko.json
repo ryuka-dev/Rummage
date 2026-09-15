@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "보관함 #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "게임 용어 로그 기록"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "세션마다 한 번, Rummage의 버튼과 레이블 이름으로 쓸 수 있는 게임 현지화 용어를 BepInEx 로그에 기록합니다. 모드 동작에는 영향을 주지 않습니다."
     }
   ]
 }

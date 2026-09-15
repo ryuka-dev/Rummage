@@ -28,9 +28,11 @@ In development (phase 1).
   that UnlockableStorage (every storage except the main stash, which has none and uses
   Rummage's own table). An identifier Rummage does not know shows as "Stash #n".
 
-Planned:
-
-3. Later: world markers on the matching stashes in the church.
+- While a filter is active, every storage in the scene that holds matches gets a floating label
+  above it (for example `Wardrobe ×5`), facing the camera and drawn over walls. A storage that
+  stands in several places (the main stash) is labelled only at the one nearest the player,
+  re-chosen every frame. Counts are refreshed when a level loads, so the labels are right with the
+  inventory closed.
 
 Constraints the design keeps:
 
@@ -66,4 +68,5 @@ Only log switches, under `[Debug]`. They never change what the mod does.
 | --- | --- | --- |
 | `LogStashProbe` | `true` | Stash identifiers, save keys, setup timing and item change counts |
 | `LogEnchantmentCatalog` | `true` | Every oil and enchantment item definition, once per session |
-| `LogSearchFilter` | `true` | Search bar placement and match counts for each filter change |
+| `LogSearchFilter` | `true` | Search bar placement, match counts per filter change, world marker index |
+| `LogGameTerms` | `true` | Game localisation terms that could name Rummage's labels, once per session |

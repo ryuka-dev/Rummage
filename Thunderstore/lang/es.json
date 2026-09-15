@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Alijo #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Registrar términos del juego"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Una vez por sesión, escribe en el registro de BepInEx los términos de localización del juego que podrían nombrar los botones y etiquetas de Rummage. No cambia el funcionamiento del mod."
     }
   ]
 }

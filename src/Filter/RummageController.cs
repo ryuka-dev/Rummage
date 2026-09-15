@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PerfectRandom.Sulfur.Core;
 using PerfectRandom.Sulfur.Core.UI;
 using PerfectRandom.Sulfur.Core.UI.Inventory;
@@ -11,21 +12,24 @@ using UnityEngine.InputSystem;
 namespace Ryuka.Sulfur.Rummage.Filter
 {
     /// <summary>
-    /// Connects the filter, its presentation on the grids, the search bar and the typing guard to
-    /// the inventory's lifecycle.
+    /// Connects the filter, its presentation on the grids, the search bar, the world markers and the
+    /// typing guard to the inventory's and the level's lifecycle.
     /// </summary>
     internal sealed class RummageController : IDisposable
     {
         private readonly InventoryFilter filter = new InventoryFilter();
         private readonly InventoryFilterPresenter presenter;
         private readonly SearchBar searchBar;
+        private readonly WorldMarkers worldMarkers;
+        private bool countsStale;
         private bool tickFailureReported;
 
         public RummageController(DiagnosticsConfig diagnostics)
         {
             presenter = new InventoryFilterPresenter(filter, diagnostics);
             searchBar = new SearchBar(filter, diagnostics);
-            presenter.SummaryChanged += searchBar.SetSummary;
+            worldMarkers = new WorldMarkers(diagnostics);
+            presenter.SummaryChanged += PublishCounts;
 
             SearchInputGuard.IsTyping = () => searchBar.IsFocused;
             SearchInputGuard.StopTyping = searchBar.Unfocus;
@@ -52,24 +56,47 @@ namespace Ryuka.Sulfur.Rummage.Filter
             }
         }
 
+        /// <summary>
+        /// A level was built. Its storages are new objects, and the counts are refreshed even with
+        /// the inventory closed so the world markers are right from the start.
+        /// </summary>
+        public void OnPlayerSpawned()
+        {
+            worldMarkers.OnPlayerSpawned();
+            countsStale = true;
+        }
+
         public void OnLanguageChanged()
         {
             ItemSearchCatalog.Invalidate();
             searchBar.RefreshTexts();
+            worldMarkers.OnLanguageChanged();
             presenter.MarkDirty();
+            countsStale = true;
         }
 
         public void Tick()
         {
             UIManager manager = StaticInstance<UIManager>.Instance;
             InventoryUI ui = manager != null ? manager.InventoryUI : null;
-            if (ui == null || !ui.IsOpened)
+            if (ui == null)
             {
                 return;
             }
 
             try
             {
+                if (countsStale)
+                {
+                    countsStale = false;
+                    PublishCounts(filter.IsActive ? StashInventoryCounter.Count(ui, filter) : null);
+                }
+
+                if (!ui.IsOpened)
+                {
+                    return;
+                }
+
                 searchBar.Tick(ui);
 
                 if (!searchBar.IsFocused && GamepadCategoryPressed(manager))
@@ -89,12 +116,25 @@ namespace Ryuka.Sulfur.Rummage.Filter
             }
         }
 
+        public void LateTick()
+        {
+            worldMarkers.LateTick();
+        }
+
         public void Dispose()
         {
             SearchInputGuard.IsTyping = null;
             SearchInputGuard.StopTyping = null;
+            presenter.SummaryChanged -= PublishCounts;
             presenter.Dispose();
             searchBar.Dispose();
+            worldMarkers.Dispose();
+        }
+
+        private void PublishCounts(List<LocationCount> counts)
+        {
+            searchBar.SetSummary(counts);
+            worldMarkers.SetCounts(counts);
         }
 
         /// <summary>

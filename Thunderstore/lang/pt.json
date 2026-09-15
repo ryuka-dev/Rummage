@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Baú #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Registrar termos do jogo"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Uma vez por sessão, escreve no log do BepInEx os termos de localização do jogo que podem nomear os botões e rótulos do Rummage. Não altera o funcionamento do mod."
     }
   ]
 }

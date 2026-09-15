@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Sandık #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Oyun terimlerini günlüğe yaz"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Oturum başına bir kez, Rummage'ın düğme ve etiketlerini adlandırabilecek oyun yerelleştirme terimlerini BepInEx günlüğüne yazar. Modun çalışmasını değiştirmez."
     }
   ]
 }

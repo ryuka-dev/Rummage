@@ -364,16 +364,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         /// </summary>
         private static TMP_FontAsset SampleFont(InventoryUI ui)
         {
-            AsyncAssetLoading loading = StaticInstance<AsyncAssetLoading>.Instance;
-            TMP_FontAsset[] cache = loading != null ? loading.fontCache : null;
-            int index = (int)PerfectRandom.Sulfur.Core.FontStyle.RoundRegular;
-
-            if (cache != null && index < cache.Length && cache[index] == null)
-            {
-                FontLocalizer.LoadFontCache();
-            }
-
-            TMP_FontAsset font = cache != null && index < cache.Length ? cache[index] : null;
+            TMP_FontAsset font = GameFonts.Current();
             if (font != null)
             {
                 return font;

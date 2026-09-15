@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Coffre #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Journaliser les termes du jeu"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Écrit une fois par session dans le journal BepInEx les termes de localisation du jeu pouvant nommer les boutons et libellés de Rummage. Ne modifie pas le fonctionnement du mod."
     }
   ]
 }

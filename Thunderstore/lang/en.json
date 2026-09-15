@@ -131,6 +131,14 @@
     {
       "key": "stash.unknown",
       "value": "Stash #{0}"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.name",
+      "value": "Log Game Terms"
+    },
+    {
+      "key": "entry.Debug.LogGameTerms.description",
+      "value": "Once per session, writes the game's localization terms that could name Rummage's buttons and labels to the BepInEx log. Does not change how the mod works."
     }
   ]
 }
