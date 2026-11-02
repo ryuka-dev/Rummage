@@ -145,8 +145,9 @@ namespace Ryuka.Sulfur.Rummage.Filter
         }
 
         /// <summary>
-        /// Ctrl+F. Neither key has a binding in the game's inventory action map (build 25257948),
-        /// and this is only checked while the search bar is on screen.
+        /// Ctrl+F. F has no binding in the game's inventory action map (build 26327540) and Ctrl
+        /// is only the CtrlModifier click modifier there; this is only checked while the search bar
+        /// is on screen.
         /// </summary>
         private static bool FocusShortcutPressed()
         {
@@ -158,7 +159,7 @@ namespace Ryuka.Sulfur.Rummage.Filter
 
         /// <summary>
         /// A gamepad cannot type, so the View/Select button steps through the categories. That
-        /// button has no binding in the game's inventory action map (build 25257948).
+        /// button has no binding in the game's inventory action map (build 26327540).
         /// </summary>
         private static bool GamepadCategoryPressed(UIManager manager)
         {
