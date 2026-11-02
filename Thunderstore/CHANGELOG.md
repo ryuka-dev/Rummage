@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+* Updated for SULFUR 1.0.2.
+* Typing "/" in the search box no longer drops the selected item. The game renamed its drop key handler in 1.0, so Rummage stopped pausing it while you type.
+* Floating labels show again above the main stash, including the new stash next to the weapon racks, and above the wardrobe. They were not visible on SULFUR 1.0.
+
 ## 1.0.0
 
 * First release.
