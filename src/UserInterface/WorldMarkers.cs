@@ -14,7 +14,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
     /// Floating labels in the world above the storages that hold matches, such as "Wardrobe ×5".
     ///
     /// One label per storage identifier. When several objects share an identifier (the main stash
-    /// stands in six places), only the one nearest the player is labelled, re-chosen every frame.
+    /// stands in several places), only the one nearest the player is labelled, re-chosen every frame.
     /// The labels face the camera, keep a readable size with distance and draw over walls.
     /// </summary>
     internal sealed class WorldMarkers : IDisposable
@@ -27,6 +27,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
         private const float PaddingX = 18f;
         private const float PaddingY = 8f;
         private const int SortingOrder = 500;
+        private const int DefaultLayer = 0;
 
         private readonly StorageIndex index;
         private readonly Dictionary<string, Marker> markers = new Dictionary<string, Marker>(StringComparer.Ordinal);
@@ -134,7 +135,6 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             }
 
             Vector3 playerPosition = player.transform.position;
-            Vector3 cameraPosition = camera.transform.position;
             shownThisFrame.Clear();
 
             foreach (LocationCount count in counts)
@@ -151,7 +151,7 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
                 }
 
                 Marker marker = GetOrCreate(count.Identifier);
-                Place(marker, target, count, cameraPosition);
+                Place(marker, target, count, camera);
                 shownThisFrame.Add(count.Identifier);
             }
 
@@ -174,8 +174,9 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             return Camera.main;
         }
 
-        private void Place(Marker marker, StorageIndex.Entry target, LocationCount count, Vector3 cameraPosition)
+        private void Place(Marker marker, StorageIndex.Entry target, LocationCount count, Camera camera)
         {
+            Vector3 cameraPosition = camera.transform.position;
             if (!marker.Root.activeSelf)
             {
                 marker.Root.SetActive(true);
@@ -203,10 +204,22 @@ namespace Ryuka.Sulfur.Rummage.UserInterface
             float distanceScale = Mathf.Clamp(away.magnitude / ReferenceDistance, 1f, MaximumDistanceScale);
             transform.localScale = Vector3.one * (WorldUnitsPerPixel * distanceScale);
 
-            if (marker.Root.layer != target.Owner.layer)
+            int layer = MarkerLayer(target.Owner.layer, camera);
+            if (marker.Root.layer != layer)
             {
-                SetLayer(marker.Root, target.Owner.layer);
+                SetLayer(marker.Root, layer);
             }
+        }
+
+        /// <summary>
+        /// The storage's own layer when the camera draws it, otherwise Default. A storage object is
+        /// not always on a drawn layer itself: in build 26327540 the main stash objects in the church
+        /// and the wardrobe sit on layer 15, which the player camera culls, and only their child
+        /// meshes render, so a marker copying that layer would never be seen.
+        /// </summary>
+        private static int MarkerLayer(int storageLayer, Camera camera)
+        {
+            return (camera.cullingMask & (1 << storageLayer)) != 0 ? storageLayer : DefaultLayer;
         }
 
         private Marker GetOrCreate(string identifier)
