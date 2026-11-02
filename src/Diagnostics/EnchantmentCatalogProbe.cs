@@ -97,7 +97,6 @@ namespace Ryuka.Sulfur.Rummage.Diagnostics
                 .Append(", isEnchantment=").Append(item.IsEnchantment)
                 .Append(", tags=").Append(item.itemTags)
                 .Append(", size=").Append(item.inventorySize.x).Append('x').Append(item.inventorySize.y)
-                .Append(", stack=").Append(item.stackSize)
                 .Append(", quality=").Append(item.itemQuality)
                 .Append(", slot=").Append(item.slotType)
                 .Append(", deprecated=").Append(item.deprecated)
